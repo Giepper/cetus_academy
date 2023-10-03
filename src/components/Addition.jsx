@@ -2,21 +2,21 @@
 //   answer = num1 / num2;
 //   break;
 
-import './Addition.css'
+import "./Addition.css";
 import { useState } from "react";
 // import { SelectMode } from "./SelectMode";
 
 let num1;
 let num2;
 let answer;
-
-function drawNumbers() {
-  num1 = Math.floor(Math.random() * 25);
-  num2 = Math.floor(Math.random() * 25);
+let randNum = 0;
+function drawNumbers(rand) {
+  num1 = Math.floor(Math.random() * rand);
+  num2 = Math.floor(Math.random() * rand);
 }
 drawNumbers();
 
-export function Addition(props) {
+export function Addition({ operation, difficulty }) {
   console.log("render2");
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
@@ -30,21 +30,23 @@ export function Addition(props) {
     if (answer == inputAnswer) {
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
-      drawNumbers();
+      drawNumbers(randNum);
     } else {
-      setNumberOfPoints(numberOfPoints - 1);
+      if (numberOfPoints > 0) {
+        setNumberOfPoints(numberOfPoints - 1);
+      }
       setNumberOfLives(numberOfLives - 1);
       setCheckAnswer(false);
     }
     console.log("numberOfPoints", numberOfPoints);
     console.log("numberOfLives", numberOfLives);
   }
-  let x = 0;
-  let ops = ["+", "-", "×"];
+  // let x = 0;
+  // let ops = ["+", "-", "×"];
   let operator = "";
   console.log("op1", operator);
-  console.log("props", props.operation);
-  switch (props.operation) {
+  console.log("props", operation);
+  switch (operation) {
     case "0":
       answer = num1 + num2;
       operator = "+";
@@ -58,10 +60,10 @@ export function Addition(props) {
       answer = num1 * num2;
       operator = "×";
       break;
-    case "3":
-      x = Math.floor(Math.random() * 3);
-      operator = ops[x];
-      break;
+    // case "3":
+    //   x = Math.floor(Math.random() * 3);
+    //   operator = ops[x];
+    //   break;
   }
   console.log("op2", operator);
 
@@ -70,6 +72,34 @@ export function Addition(props) {
   //     drawNumbers();
   //   }
   // }
+  console.log("prop", difficulty);
+  const [drawnNumbers, setDrawnNumbers] = useState(false);
+
+  if (!drawnNumbers) {
+    switch (difficulty) {
+      case "0":
+        randNum = 5;
+        drawNumbers(randNum);
+        setDrawnNumbers(true);
+        break;
+      case "1":
+        randNum = 10;
+        drawNumbers(randNum);
+        setDrawnNumbers(true);
+        break;
+      case "2":
+        randNum = 15;
+        drawNumbers(randNum);
+        setDrawnNumbers(true);
+        break;
+      case "3":
+        randNum = 25;
+        drawNumbers(randNum);
+        setDrawnNumbers(true);
+        break;
+      default:
+    }
+  }
 
   return (
     <>
@@ -79,6 +109,12 @@ export function Addition(props) {
             <span className="lives">lives: {numberOfLives}</span>
             <br />
             <span className="points">points: {numberOfPoints}</span>
+            <div className="points-bar-container">
+              <div className="points-bar">
+                <div className="main-character-icon"></div>
+              </div>
+              <div className="reward-icon"></div>
+            </div>
           </div>
           <div className="operation-container main-container-el">
             <span className="operation-el first-num">{num1} </span>
