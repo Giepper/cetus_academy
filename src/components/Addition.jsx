@@ -2,6 +2,7 @@
 //   answer = num1 / num2;
 //   break;
 
+import './Addition.css'
 import { useState } from "react";
 // import { SelectMode } from "./SelectMode";
 
@@ -39,7 +40,7 @@ export function Addition(props) {
     console.log("numberOfLives", numberOfLives);
   }
   let x = 0;
-  let ops = ["+", "-", "*"];
+  let ops = ["+", "-", "×"];
   let operator = "";
   console.log("op1", operator);
   console.log("props", props.operation);
@@ -55,7 +56,7 @@ export function Addition(props) {
       break;
     case "2":
       answer = num1 * num2;
-      operator = "*";
+      operator = "×";
       break;
     case "3":
       x = Math.floor(Math.random() * 3);
@@ -80,16 +81,16 @@ export function Addition(props) {
             <span className="points">points: {numberOfPoints}</span>
           </div>
           <div className="operation-container main-container-el">
-            <span className="operation-el first-num">{num1}</span>
+            <span className="operation-el first-num">{num1} </span>
             <span className="operation-el operation">{operator}</span>
-            <span className="operation-el second-num">{num2}</span>
+            <span className="operation-el second-num"> {num2} = ?</span>
           </div>
           <div className="answer-container main-container-el">
             <div className="easy-mode-answer-container"></div>
             <div className="hard-mode-answer-container">
               <form action="" onSubmit={handleHardModeAnswer}>
                 <input
-                  type="text"
+                  type="number"
                   name="hard-mode-answer"
                   id="hard-mode-answer"
                   onChange={(e) => {

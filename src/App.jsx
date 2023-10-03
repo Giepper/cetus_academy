@@ -1,4 +1,4 @@
-// import './App.css'
+import './App.css'
 
 // import { useState } from "react";
 import { useState } from "react";
@@ -38,7 +38,7 @@ function App() {
               value={2}
               onClick={selectOperation}
             >
-              x
+              ×
             </button>
             {/* <button className="select-operation-btn division-btn">/</button> */}
           </div>
@@ -48,7 +48,7 @@ function App() {
               value={3}
               onClick={selectOperation}
             >
-              + - x
+              random
             </button>
           </div>
         </div>
@@ -57,6 +57,7 @@ function App() {
           <button className="select-difficulty-btn easy-btn">Easy</button>
           <button className="select-difficulty-btn medium-btn">Medium</button>
           <button className="select-difficulty-btn hard-btn">Hard</button>
+          <button className="select-difficulty-btn extreme-btn">Extreme</button>
         </div>
       </section>
       <Addition operation={selectMode} />
