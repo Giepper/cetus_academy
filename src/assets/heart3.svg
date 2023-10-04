@@ -1,0 +1,33 @@
+<svg
+   width="21.741192mm"
+   height="19.070854mm"
+   viewBox="0 0 21.741192 19.070854"
+   version="1.1"
+   id="heart3"
+   sodipodi:docname="heart3.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-38.12583,-65.198078)">
+    <path
+       class="left"
+       style="opacity:1;fill:#ed2727;fill-opacity:1;stroke:#c10000;stroke-width:15.1181;stroke-linejoin:miter;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 42.876953 18.699219 C 42.273484 19.327485 41.655238 19.965856 41.003906 20.617188 L 31.050781 10.664062 C 26.317891 5.9311726 17.961253 6.6676532 12.314453 12.314453 C 6.6676432 17.961263 5.9311726 26.317891 10.664062 31.050781 L 20.617188 41.003906 L 41.001953 61.388672 L 50.445312 51.945312 L 42.089844 43.699219 L 54.984375 30.806641 L 42.876953 18.699219 z "
+       transform="matrix(0.26458333,0,0,0.26458333,38.12583,65.198078)" />
+    <path
+       class="path2437"
+       style="opacity:1;fill:#ed2727;fill-opacity:1;stroke:#c10000;stroke-width:15.1181;stroke-linejoin:miter;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 42.876953 18.699219 L 54.984375 30.806641 L 42.089844 43.699219 L 50.445312 51.945312 L 61.388672 41.001953 L 71.507812 30.882812 C 76.240702 26.149923 75.504222 17.795237 69.857422 12.148438 C 64.846282 8.9932175 61.088024 7.7665263 57.927734 7.9101562 C 52.25137 8.1681511 48.496552 12.848702 42.876953 18.699219 z "
+       transform="matrix(0.26458333,0,0,0.26458333,38.12583,65.198078)" />
+    <path
+       class="right"
+       style="opacity:0.33;fill:#ff8080;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:1.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 49.905098,69.695244 c 0,0 6.19518,0.767665 4.238254,6.575716 l 2.902261,-2.901796 c 1.252244,-1.252244 1.057383,-3.462753 -0.436666,-4.956802 -1.325864,-0.834819 -2.319985,-1.155552 -3.156302,-1.121162 -1.435159,0.05902 -2.548722,1.331699 -3.547547,2.404044 z"
+       sodipodi:nodetypes="ccccsc" />
+  </g>
+</svg>

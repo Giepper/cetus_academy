@@ -4,20 +4,34 @@
 
 import "./Addition.css";
 import { useState } from "react";
+import styled from 'styled-components';
+
 // import { SelectMode } from "./SelectMode";
 
 let num1;
 let num2;
 let answer;
 let randNum = 0;
+let points = 0;
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
   num2 = Math.floor(Math.random() * rand);
 }
 drawNumbers();
 
-export function Addition({ operation, difficulty }) {
-  console.log("render2");
+export const PointsBar = styled.div`
+  width: ${props => props.width}px;
+  height: 40px;
+  max-width: 400px;
+  position: relative;
+  background-color: green;
+  transition-property: width;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+`
+
+export function Addition({ operation, difficulty }) 
+{
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -25,12 +39,11 @@ export function Addition({ operation, difficulty }) {
 
   function handleHardModeAnswer(e) {
     e.preventDefault();
-    console.log("answer", answer);
-    console.log("inputAnswer", inputAnswer);
     if (answer == inputAnswer) {
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
+      
     } else {
       if (numberOfPoints > 0) {
         setNumberOfPoints(numberOfPoints - 1);
@@ -38,22 +51,20 @@ export function Addition({ operation, difficulty }) {
       setNumberOfLives(numberOfLives - 1);
       setCheckAnswer(false);
     }
-    console.log("numberOfPoints", numberOfPoints);
-    console.log("numberOfLives", numberOfLives);
+    points = numberOfPoints * 50;
   }
   // let x = 0;
   // let ops = ["+", "-", "×"];
+  
   let operator = "";
-  console.log("op1", operator);
-  console.log("props", operation);
   switch (operation) {
     case "0":
       answer = num1 + num2;
       operator = "+";
-      console.log("opt", operator);
       break;
     case "1":
       answer = num1 - num2;
+      if(answer<0) drawNumbers(randNum)
       operator = "-";
       break;
     case "2":
@@ -65,14 +76,13 @@ export function Addition({ operation, difficulty }) {
     //   operator = ops[x];
     //   break;
   }
-  console.log("op2", operator);
 
   // if (props.operation === "/") {
   //   while (num1 == 0 || num2 == 0) {
   //     drawNumbers();
   //   }
   // }
-  console.log("prop", difficulty);
+
   const [drawnNumbers, setDrawnNumbers] = useState(false);
 
   if (!drawnNumbers) {
@@ -108,9 +118,10 @@ export function Addition({ operation, difficulty }) {
           <div className="stats-bar">
             <span className="lives">lives: {numberOfLives}</span>
             <br />
-            <span className="points">points: {numberOfPoints}</span>
+            
+            <br />
             <div className="points-bar-container">
-              <div className="points-bar">
+              <PointsBar width={points}><span className="points">points: {numberOfPoints}</span></PointsBar>
                 <div className="main-character-icon"></div>
               </div>
               <div className="reward-icon"></div>
@@ -137,7 +148,7 @@ export function Addition({ operation, difficulty }) {
                 {checkAnswer && <p>SUPER!</p>}
               </form>
             </div>
-          </div>
+        
         </div>
       </main>
     </>
