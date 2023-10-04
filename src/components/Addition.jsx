@@ -4,7 +4,7 @@
 
 import "./Addition.css";
 import { useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -20,7 +20,7 @@ function drawNumbers(rand) {
 drawNumbers();
 
 export const PointsBar = styled.div`
-  width: ${props => props.width}px;
+  width: ${(props) => props.width}px;
   height: 40px;
   max-width: 400px;
   position: relative;
@@ -28,10 +28,9 @@ export const PointsBar = styled.div`
   transition-property: width;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-`
+`;
 
-export function Addition({ operation, difficulty }) 
-{
+export function Addition({ operation, difficulty }) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -43,7 +42,6 @@ export function Addition({ operation, difficulty })
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
-      
     } else {
       if (numberOfPoints > 0) {
         setNumberOfPoints(numberOfPoints - 1);
@@ -55,7 +53,7 @@ export function Addition({ operation, difficulty })
   }
   // let x = 0;
   // let ops = ["+", "-", "×"];
-  
+
   let operator = "";
   switch (operation) {
     case "0":
@@ -64,7 +62,7 @@ export function Addition({ operation, difficulty })
       break;
     case "1":
       answer = num1 - num2;
-      if(answer<0) drawNumbers(randNum)
+      if (answer < 0) drawNumbers(randNum);
       operator = "-";
       break;
     case "2":
@@ -118,37 +116,38 @@ export function Addition({ operation, difficulty })
           <div className="stats-bar">
             <span className="lives">lives: {numberOfLives}</span>
             <br />
-            
+
             <br />
             <div className="points-bar-container">
-              <PointsBar width={points}><span className="points">points: {numberOfPoints}</span></PointsBar>
-                <div className="main-character-icon"></div>
-              </div>
-              <div className="reward-icon"></div>
+              <PointsBar width={numberOfPoints * 50}>
+                <span className="points">points: {numberOfPoints}</span>
+              </PointsBar>
+              <div className="main-character-icon"></div>
             </div>
+            <div className="reward-icon"></div>
           </div>
-          <div className="operation-container main-container-el">
-            <span className="operation-el first-num">{num1} </span>
-            <span className="operation-el operation">{operator}</span>
-            <span className="operation-el second-num"> {num2} = ?</span>
+        </div>
+        <div className="operation-container main-container-el">
+          <span className="operation-el first-num">{num1} </span>
+          <span className="operation-el operation">{operator}</span>
+          <span className="operation-el second-num"> {num2} = ?</span>
+        </div>
+        <div className="answer-container main-container-el">
+          <div className="easy-mode-answer-container"></div>
+          <div className="hard-mode-answer-container">
+            <form action="" onSubmit={handleHardModeAnswer}>
+              <input
+                type="number"
+                name="hard-mode-answer"
+                id="hard-mode-answer"
+                onChange={(e) => {
+                  setInputAnswer(e.target.value);
+                }}
+              />
+              <button type="submit">Check Answer</button>
+              {checkAnswer && <p>SUPER!</p>}
+            </form>
           </div>
-          <div className="answer-container main-container-el">
-            <div className="easy-mode-answer-container"></div>
-            <div className="hard-mode-answer-container">
-              <form action="" onSubmit={handleHardModeAnswer}>
-                <input
-                  type="number"
-                  name="hard-mode-answer"
-                  id="hard-mode-answer"
-                  onChange={(e) => {
-                    setInputAnswer(e.target.value);
-                  }}
-                />
-                <button type="submit">Check Answer</button>
-                {checkAnswer && <p>SUPER!</p>}
-              </form>
-            </div>
-        
         </div>
       </main>
     </>

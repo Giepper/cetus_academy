@@ -48,6 +48,13 @@ function App() {
               >
                 ×
               </button>
+              <button
+                className="select-operation-btn power-btn"
+                value={3}
+                onClick={handlerSelectOperation}
+              >
+                ^
+              </button>
               {/* <button className="select-operation-btn division-btn">/</button> */}
             </div>
             {/* <div className="btn-container">
