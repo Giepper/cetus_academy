@@ -6,6 +6,8 @@ import "./Addition.css";
 import { useState } from "react";
 import styled from "styled-components";
 import heart from "../assets/heart.svg";
+import smilingGarfield from "../assets/smiling-garfield.svg";
+import pinkSock from "../assets/pink-sock.svg";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -28,6 +30,8 @@ export const PointsBar = styled.div`
   transition-property: width;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
 `;
 
 export function Addition({ operation, difficulty }) {
@@ -125,13 +129,19 @@ export function Addition({ operation, difficulty }) {
             <br />
 
             <br />
-            <div className="points-bar-container">
-              <PointsBar width={numberOfPoints * 2}>
-                <span className="points">points: {numberOfPoints}</span>
-              </PointsBar>
-              <div className="main-character-icon"></div>
+            <div className="points-bar-upper-container">
+              <div className="points-bar-container">
+                <PointsBar width={numberOfPoints * 2}>
+                  <span className="points">points: {numberOfPoints}</span>
+                </PointsBar>
+                <div className="main-character-icon">
+                  <img src={smilingGarfield} className="cat" />
+                </div>
+              </div>
+              <div className="reward-icon">
+                <img src={pinkSock} className="sock" />
+              </div>
             </div>
-            <div className="reward-icon"></div>
           </div>
         </div>
         <div className="operation-container main-container-el">
