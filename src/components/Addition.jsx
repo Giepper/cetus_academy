@@ -5,6 +5,7 @@
 import "./Addition.css";
 import { useState } from "react";
 import styled from "styled-components";
+import heart from "../assets/heart.svg";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -12,7 +13,6 @@ let num1;
 let num2;
 let answer;
 let randNum = 0;
-let points = 0;
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
   num2 = Math.floor(Math.random() * rand);
@@ -20,7 +20,7 @@ function drawNumbers(rand) {
 drawNumbers();
 
 export const PointsBar = styled.div`
-  width: ${(props) => props.width}px;
+  width: ${(props) => props.width}%;
   height: 40px;
   max-width: 400px;
   position: relative;
@@ -49,7 +49,6 @@ export function Addition({ operation, difficulty }) {
       setNumberOfLives(numberOfLives - 1);
       setCheckAnswer(false);
     }
-    points = numberOfPoints * 50;
   }
   // let x = 0;
   // let ops = ["+", "-", "×"];
@@ -109,17 +108,25 @@ export function Addition({ operation, difficulty }) {
     }
   }
 
+  function renderLives() {
+    const hearts = [];
+    for (let x = 0; x < numberOfLives; x++) {
+      hearts.push(<img src={heart} key={x} className="liveHeart" />);
+    }
+    return hearts;
+  }
+
   return (
     <>
       <main>
         <div className="main-container">
           <div className="stats-bar">
-            <span className="lives">lives: {numberOfLives}</span>
+            <span className="lives">{renderLives()}</span>
             <br />
 
             <br />
             <div className="points-bar-container">
-              <PointsBar width={numberOfPoints * 50}>
+              <PointsBar width={numberOfPoints * 2}>
                 <span className="points">points: {numberOfPoints}</span>
               </PointsBar>
               <div className="main-character-icon"></div>
