@@ -14,8 +14,8 @@ let answer;
 let randNum = 0;
 let points = 0;
 function drawNumbers(rand) {
-  num1 = Math.floor(Math.random() * rand);
-  num2 = Math.floor(Math.random() * rand);
+  num1 = Math.floor(Math.random() * rand); // Generate a random base number (1 to rand)
+  num2 = Math.floor(Math.random() * rand);    // Generate a random exponent (2 to 6)
 }
 drawNumbers();
 
@@ -69,6 +69,10 @@ export function Addition({ operation, difficulty }) {
       answer = num1 * num2;
       operator = "×";
       break;
+      case "3":
+  answer = Math.pow(num1, num2);
+  operator = "^";
+  break;
     // case "3":
     //   x = Math.floor(Math.random() * 3);
     //   operator = ops[x];
@@ -128,10 +132,10 @@ export function Addition({ operation, difficulty }) {
           </div>
         </div>
         <div className="operation-container main-container-el">
-          <span className="operation-el first-num">{num1} </span>
-          <span className="operation-el operation">{operator}</span>
-          <span className="operation-el second-num"> {num2} = ?</span>
-        </div>
+  <span className="operation-el first-num">{num1}</span>
+  <span className="operation-el operation">{operator}</span>
+  <span className="operation-el second-num"> {num2} = ?</span>
+</div>
         <div className="answer-container main-container-el">
           <div className="easy-mode-answer-container"></div>
           <div className="hard-mode-answer-container">
@@ -145,7 +149,7 @@ export function Addition({ operation, difficulty }) {
                 }}
               />
               <button type="submit">Check Answer</button>
-              {checkAnswer && <p>SUPER!</p>}
+              {checkAnswer && <p class="g">SUPER!</p>}
             </form>
           </div>
         </div>
