@@ -10,6 +10,7 @@ import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
 import { WinModal } from "./WinModal";
 import { LoseModal } from "./LoseModal";
+import { heartBroken } from "../assets/heart3.svg";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -53,7 +54,7 @@ export function Addition({ operation, difficulty }) {
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 25);
+      setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -129,6 +130,11 @@ export function Addition({ operation, difficulty }) {
     for (let x = 0; x < numberOfLives; x++) {
       hearts.push(<img src={heart} key={x} className="liveHeart" />);
     }
+    if (numberOfLives < 3 && numberOfLives >= 0) {
+      for (let x = 3; x > numberOfLives; x--)
+        hearts.push(<img src={heartBroken} key={x} className="liveHeart" />);
+    }
+
     return hearts;
   }
 
