@@ -46,12 +46,14 @@ export function Addition({ operation, difficulty }) {
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
+      setInputAnswer("");
     } else {
       if (numberOfPoints > 0) {
         setNumberOfPoints(numberOfPoints - 1);
       }
       setNumberOfLives(numberOfLives - 1);
       setCheckAnswer(false);
+      setInputAnswer("");
     }
   }
   // let x = 0;
@@ -157,6 +159,7 @@ export function Addition({ operation, difficulty }) {
                 type="number"
                 name="hard-mode-answer"
                 id="hard-mode-answer"
+                value={inputAnswer}
                 onChange={(e) => {
                   setInputAnswer(e.target.value);
                 }}
