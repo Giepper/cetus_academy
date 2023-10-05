@@ -6,11 +6,12 @@ import "./Addition.css";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import heart from "../assets/heart.svg";
-import smilingGarfield from "../assets/smiling-garfield.svg";
+// import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
 import { WinModal } from "./WinModal";
 import { LoseModal } from "./LoseModal";
-import { heartBroken } from "../assets/heart3.svg";
+import heartBroken from "../assets/heart3.svg";
+import happyTom from "../assets/happy-tom.svg";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -54,7 +55,7 @@ export function Addition({ operation, difficulty }) {
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 1);
+      setNumberOfPoints(numberOfPoints + 25);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -167,7 +168,7 @@ export function Addition({ operation, difficulty }) {
                   <span className="points">points: {numberOfPoints}</span>
                 </PointsBar>
                 <div className="main-character-icon">
-                  <img src={smilingGarfield} className="cat" />
+                  <img src={happyTom} className="cat" />
                 </div>
               </div>
               <div className="reward-icon">

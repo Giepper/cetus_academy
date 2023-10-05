@@ -25,6 +25,12 @@
   position: fixed;
   z-index: 999;
 }
+.end-game-cat {
+  width: 50%;
+}
+.end-game-sock {
+  width: 50%;
+}
 
 @keyframes endGameAnim {
   0% {
