@@ -3,11 +3,13 @@
 //   break;
 
 import "./Addition.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import heart from "../assets/heart.svg";
 import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
+import { WinModal } from "./WinModal";
+import { LoseModal } from "./LoseModal";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -24,7 +26,6 @@ drawNumbers();
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
   height: 40px;
-  max-width: 400px;
   position: relative;
   background-color: green;
   transition-property: width;
@@ -39,11 +40,20 @@ export function Addition({ operation, difficulty }) {
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
   const [numberOfLives, setNumberOfLives] = useState(3);
+  const [didPlayerWin, setDidPlayerWin] = useState(false);
+  const [didPlayerLose, setDidPlayerLose] = useState(false);
+
+  console.log(numberOfLives);
+  useEffect(() => {
+    if (numberOfPoints < 50 || numberOfLives > 0) {
+      checkPoints(numberOfPoints, numberOfLives);
+    }
+  }, [numberOfPoints, numberOfLives]);
 
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 1);
+      setNumberOfPoints(numberOfPoints + 25);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -91,17 +101,17 @@ export function Addition({ operation, difficulty }) {
   if (!drawnNumbers) {
     switch (difficulty) {
       case "0":
-        randNum = 5;
-        drawNumbers(randNum);
-        setDrawnNumbers(true);
-        break;
-      case "1":
         randNum = 10;
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
-      case "2":
+      case "1":
         randNum = 15;
+        drawNumbers(randNum);
+        setDrawnNumbers(true);
+        break;
+      case "2":
+        randNum = 20;
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
@@ -122,9 +132,23 @@ export function Addition({ operation, difficulty }) {
     return hearts;
   }
 
+  function checkPoints(points, lives) {
+    if (points >= 50) {
+      setDidPlayerWin(true);
+      console.log("win");
+    }
+    if (lives <= 0) {
+      setDidPlayerLose(true);
+      console.log("lose");
+    }
+    console.log(numberOfLives);
+  }
+
   return (
     <>
       <main>
+        {didPlayerWin && <WinModal />}
+        {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">
             <span className="lives">{renderLives()}</span>
@@ -159,6 +183,7 @@ export function Addition({ operation, difficulty }) {
                 type="number"
                 name="hard-mode-answer"
                 id="hard-mode-answer"
+                autoComplete="off"
                 value={inputAnswer}
                 onChange={(e) => {
                   setInputAnswer(e.target.value);
