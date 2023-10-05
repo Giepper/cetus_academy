@@ -49,6 +49,10 @@ button[type="submit"] {
   overflow: hidden;
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.5));
   border: 1px solid red;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  overflow: visible;
 }
 
 span.points {
@@ -66,7 +70,34 @@ span.points {
   /* padding-right: 1rem; */
   border: 1px solid red;
 }
+
 .liveHeart {
   width: 100px;
   height: 100px;
+}
+
+.main-character-icon {
+  width: 75px;
+  height: 75px;
+  /* background-color: red; */
+  position: relative;
+  z-index: 5;
+}
+.cat {
+  width: inherit;
+  height: inherit;
+  position: inherit;
+  margin-left: -20px;
+  z-index: 10;
+}
+.sock {
+  width: 75px;
+  height: 75px;
+  margin-left: -15px;
+  position: relative;
+  z-index: 5;
+}
+.points-bar-upper-container {
+  display: flex;
+  align-items: center;
 }

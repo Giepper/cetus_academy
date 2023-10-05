@@ -6,9 +6,11 @@ import "./Addition.css";
 import { useState } from "react";
 import styled from "styled-components";
 import heart from "../assets/heart.svg";
+import smilingGarfield from "../assets/smiling-garfield.svg";
+import pinkSock from "../assets/pink-sock.svg";
 
 // import { SelectMode } from "./SelectMode";
-
+let randomExponent = Math.random() < 0.5 ? 2 : 3; 
 let num1;
 let num2;
 let answer;
@@ -18,16 +20,22 @@ function drawNumbers(rand) {
   num2 = Math.floor(Math.random() * rand);    // Generate a random exponent (2 to 6)
 }
 drawNumbers();
+//function drawPower(){
+
+//}
+//drawPower();
+
 
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
   height: 40px;
-  max-width: 400px;
   position: relative;
   background-color: green;
   transition-property: width;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
 `;
 
 export function Addition({ operation, difficulty }) {
@@ -42,17 +50,19 @@ export function Addition({ operation, difficulty }) {
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
+      setInputAnswer("");
     } else {
       if (numberOfPoints > 0) {
         setNumberOfPoints(numberOfPoints - 1);
       }
       setNumberOfLives(numberOfLives - 1);
       setCheckAnswer(false);
+      setInputAnswer("");
     }
   }
   // let x = 0;
   // let ops = ["+", "-", "×"];
-
+  
   let operator = "";
   switch (operation) {
     case "0":
@@ -69,20 +79,15 @@ export function Addition({ operation, difficulty }) {
       operator = "×";
       break;
       case "3":
-  answer = Math.pow(num1, num2);
-  operator = "^";
-  break;
-    // case "3":
-    //   x = Math.floor(Math.random() * 3);
-    //   operator = ops[x];
-    //   break;
+        if(num1 < 10 && num1 > 0){
+      num2 = randomExponent;
+      answer = Math.pow(num1, num2);    
+        }else{
+          drawNumbers(randNum);
+        }
+        operator = `^`;
+   break;
   }
-
-  // if (props.operation === "/") {
-  //   while (num1 == 0 || num2 == 0) {
-  //     drawNumbers();
-  //   }
-  // }
 
   const [drawnNumbers, setDrawnNumbers] = useState(false);
 
@@ -108,7 +113,6 @@ export function Addition({ operation, difficulty }) {
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
-      default:
     }
   }
 
@@ -129,13 +133,19 @@ export function Addition({ operation, difficulty }) {
             <br />
 
             <br />
-            <div className="points-bar-container">
-              <PointsBar width={numberOfPoints * 2}>
-                <span className="points">points: {numberOfPoints}</span>
-              </PointsBar>
-              <div className="main-character-icon"></div>
+            <div className="points-bar-upper-container">
+              <div className="points-bar-container">
+                <PointsBar width={numberOfPoints * 2}>
+                  <span className="points">points: {numberOfPoints}</span>
+                </PointsBar>
+                <div className="main-character-icon">
+                  <img src={smilingGarfield} className="cat" />
+                </div>
+              </div>
+              <div className="reward-icon">
+                <img src={pinkSock} className="sock" />
+              </div>
             </div>
-            <div className="reward-icon"></div>
           </div>
         </div>
         <div className="operation-container main-container-el">
@@ -151,6 +161,7 @@ export function Addition({ operation, difficulty }) {
                 type="number"
                 name="hard-mode-answer"
                 id="hard-mode-answer"
+                value={inputAnswer}
                 onChange={(e) => {
                   setInputAnswer(e.target.value);
                 }}
