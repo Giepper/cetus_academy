@@ -30,6 +30,7 @@ function App() {
 
       // Odtwórz dźwięk po załadowaniu komponentu
       sound.play();
+      sound.loop();
 
       // Pamiętaj o czyszczeniu zasobów dźwiękowych po zakończeniu komponentu
       return () => {
@@ -39,6 +40,7 @@ function App() {
   };
   return (
     <>
+      <MyComponent />
       {shouldComponentShown && (
         <section className="select-mode-container">
           <div className="select-operation select-mode-el">
