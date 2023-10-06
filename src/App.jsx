@@ -1,8 +1,9 @@
 import "./App.css";
 
 // import { useState } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Addition } from "./components/Addition";
+import { Howl } from 'howler';
 // import { SelectMode } from "./components/SelectMode";
 
 function App() {
@@ -10,6 +11,22 @@ function App() {
   const [selectMode, setSelectMode] = useState(null);
   const [selectDifficulty, setSelectDifficulty] = useState(null);
   const [shouldComponentShown, setShouldComponentShown] = useState(true);
+  const MyComponent = () => {
+    useEffect(() => {
+      const sound = new Howl({
+        src: ['./src/assets/nerdd.mp3'],
+        loop: true,
+      });
+  
+      sound.play();
+  
+      return () => {
+        sound.unload();
+      };
+    }, []);
+  
+    return <div>Mój komponent z dźwiękiem</div>;
+  };
 
   function handlerSelectOperation(e) {
     setSelectMode(e.target.value);
@@ -22,6 +39,7 @@ function App() {
   }
   return (
     <>
+    <MyComponent></MyComponent>
       {shouldComponentShown && (
         <section className="select-mode-container">
           <div className="select-operation select-mode-el">
@@ -47,6 +65,13 @@ function App() {
                 onClick={handlerSelectOperation}
               >
                 ×
+              </button>
+              <button
+                className="select-operation-btn power-btn"
+                value={3}
+                onClick={handlerSelectOperation}
+              >
+                ^
               </button>
               {/* <button className="select-operation-btn division-btn">/</button> */}
             </div>
