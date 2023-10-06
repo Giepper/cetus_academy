@@ -1,9 +1,11 @@
 import "./App.css";
 
 // import { useState } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Addition } from "./components/Addition";
 // import { SelectMode } from "./components/SelectMode";
+import { Howl } from "howler";
+import gigaChad from "./assets/GigaChad.mp3";
 
 function App() {
   console.log("render");
@@ -20,8 +22,24 @@ function App() {
     console.log("sd", newDifficulty);
     setShouldComponentShown(false);
   }
+  const MyComponent = () => {
+    useEffect(() => {
+      const sound = new Howl({
+        src: [gigaChad],
+      });
+
+      // Odtwórz dźwięk po załadowaniu komponentu
+      sound.play();
+
+      // Pamiętaj o czyszczeniu zasobów dźwiękowych po zakończeniu komponentu
+      return () => {
+        sound.unload();
+      };
+    }, []);
+  };
   return (
     <>
+      <MyComponent />
       {shouldComponentShown && (
         <section className="select-mode-container">
           <div className="select-operation select-mode-el">

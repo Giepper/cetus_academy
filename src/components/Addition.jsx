@@ -12,6 +12,7 @@ import { WinModal } from "./WinModal";
 import { LoseModal } from "./LoseModal";
 import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
+import angryTom from "../assets/angry-tom.svg";
 
 // import { SelectMode } from "./SelectMode";
 
@@ -55,7 +56,7 @@ export function Addition({ operation, difficulty }) {
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 25);
+      setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -79,7 +80,6 @@ export function Addition({ operation, difficulty }) {
       break;
     case "1":
       answer = num1 - num2;
-      if (answer < 0) drawNumbers(randNum);
       operator = "-";
       break;
     case "2":
@@ -168,7 +168,8 @@ export function Addition({ operation, difficulty }) {
                   <span className="points">points: {numberOfPoints}</span>
                 </PointsBar>
                 <div className="main-character-icon">
-                  <img src={happyTom} className="cat" />
+                  {checkAnswer && <img src={happyTom} className="cat" />}
+                  {!checkAnswer && <img src={angryTom} className="cat" />}
                 </div>
               </div>
               <div className="reward-icon">
