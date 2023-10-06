@@ -16,6 +16,7 @@ function App() {
       const sound = new Howl({
         src: ['./src/assets/nerdd.mp3'],
         loop: true,
+        volume: 0.33,
       });
   
       sound.play();
