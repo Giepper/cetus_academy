@@ -14,17 +14,22 @@ import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
 
-// import { SelectMode } from "./SelectMode";
 
+// import { SelectMode } from "./SelectMode";
+// let [isMusicPlaying, setIsMusicPlaying] = useState(true);
+let randomExponent = Math.random() < 0.5 ? 2 : 3;
 let num1;
 let num2;
 let answer;
 let randNum = 0;
+
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
   num2 = Math.floor(Math.random() * rand);
 }
+
 drawNumbers();
+
 
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
@@ -86,17 +91,16 @@ export function Addition({ operation, difficulty }) {
       answer = num1 * num2;
       operator = "×";
       break;
-    // case "3":
-    //   x = Math.floor(Math.random() * 3);
-    //   operator = ops[x];
-    //   break;
+      case "3":
+        if(num1 < 10 && num1 > 0){
+      num2 = randomExponent;
+      answer = Math.pow(num1, num2);    
+        }else{
+          drawNumbers(randNum);
+        }
+        operator = `^`;
+   break;
   }
-
-  // if (props.operation === "/") {
-  //   while (num1 == 0 || num2 == 0) {
-  //     drawNumbers();
-  //   }
-  // }
 
   const [drawnNumbers, setDrawnNumbers] = useState(false);
 
@@ -150,10 +154,14 @@ export function Addition({ operation, difficulty }) {
     }
     console.log(numberOfLives);
   }
+  
 
   return (
     <>
+
+  
       <main>
+      
         {didPlayerWin && <WinModal />}
         {didPlayerLose && <LoseModal />}
         <div className="main-container">

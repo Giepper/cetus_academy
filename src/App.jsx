@@ -3,8 +3,8 @@ import "./App.css";
 // import { useState } from "react";
 import { useEffect, useState } from "react";
 import { Addition } from "./components/Addition";
-// import { SelectMode } from "./components/SelectMode";
 import { Howl } from "howler";
+// import { SelectMode } from "./components/SelectMode";
 import gigaChad from "./assets/GigaChad.mp3";
 
 function App() {
@@ -39,7 +39,6 @@ function App() {
   };
   return (
     <>
-      <MyComponent />
       {shouldComponentShown && (
         <section className="select-mode-container">
           <div className="select-operation select-mode-el">
@@ -65,6 +64,13 @@ function App() {
                 onClick={handlerSelectOperation}
               >
                 ×
+              </button>
+              <button
+                className="select-operation-btn power-btn"
+                value={3}
+                onClick={handlerSelectOperation}
+              >
+                ^
               </button>
               {/* <button className="select-operation-btn division-btn">/</button> */}
             </div>
