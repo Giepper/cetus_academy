@@ -1,7 +1,6 @@
 import "./Modal.css";
-import "./Credits.css";
 
-export function Credits(props) {
+export function Achievements(props) {
   const handleBackToMenu = () => {
     props.onBackToMenu();
   };
@@ -10,12 +9,8 @@ export function Credits(props) {
       <div className="modal-container">
         <div className="background"></div>
         <div className="modal">
-          <h2>Authors</h2>
-          <ol className="credits-ol">
-            <li className="credits-li">Albert Nizioł</li>
-            <li className="credits-li">Filip Krupa</li>
-            <li className="credits-li">Jakub Kołton</li>
-          </ol>
+          <h2>Achievements</h2>
+
           <button className="menu-btn back-btn" onClick={handleBackToMenu}>
             Back
           </button>
