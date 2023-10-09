@@ -4,6 +4,7 @@ import { Achievements } from "./Achievements";
 import { Settings } from "./Settings";
 import { Credits } from "./Credits";
 import { useState } from "react";
+import "./Volume.css";
 
 export function Menu(props) {
   const [shouldAchievementsShown, setShouldAchievementsShown] = useState(false);

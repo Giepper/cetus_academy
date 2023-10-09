@@ -3,9 +3,9 @@ import { Howl } from "howler";
 import music from "../assets/music.mp3";
 
 export function SoundComponent(props) {
-  const handleVolumeChange = (e) => {
-    props.onVolumeChange(e);
-  };
+  // const handleVolumeChange = (e) => {
+  //   props.onVolumeChange(e);
+  // };
 
   useEffect(() => {
     const sound = new Howl(
