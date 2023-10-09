@@ -3,30 +3,33 @@
 //   break;
 
 import "./Addition.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import heart from "../assets/heart.svg";
-import heartBroken from "../assets/heart3.svg";
+// import heartBroken from "../assets/heart3.svg";
 
 import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
+import { WinModal } from "./WinModal";
+import { LoseModal } from "./LoseModal";
+import heartBroken from "../assets/heart3.svg";
+import happyTom from "../assets/happy-tom.svg";
+import angryTom from "../assets/angry-tom.svg";
+
 
 // import { SelectMode } from "./SelectMode";
-let randomExponent = Math.random() < 0.5 ? 2 : 3; 
+
 let num1;
 let num2;
 let answer;
 let randNum = 0;
+
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand); // Generate a random base number (1 to rand)
   num2 = Math.floor(Math.random() * rand);    // Generate a random exponent (2 to 6)
 }
+
 drawNumbers();
-//function drawPower(){
-
-//}
-//drawPower();
-
 
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
@@ -45,6 +48,15 @@ export function Addition({ operation, difficulty }) {
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
   const [numberOfLives, setNumberOfLives] = useState(3);
+  const [didPlayerWin, setDidPlayerWin] = useState(false);
+  const [didPlayerLose, setDidPlayerLose] = useState(false);
+
+  console.log(numberOfLives);
+  useEffect(() => {
+    if (numberOfPoints < 50 || numberOfLives > 0) {
+      checkPoints(numberOfPoints, numberOfLives);
+    }
+  }, [numberOfPoints, numberOfLives]);
 
   function handleHardModeAnswer(e) {
     e.preventDefault();
@@ -73,7 +85,6 @@ export function Addition({ operation, difficulty }) {
       break;
     case "1":
       answer = num1 - num2;
-      if (answer < 0) drawNumbers(randNum);
       operator = "-";
       break;
     case "2":
@@ -96,17 +107,17 @@ export function Addition({ operation, difficulty }) {
   if (!drawnNumbers) {
     switch (difficulty) {
       case "0":
-        randNum = 5;
-        drawNumbers(randNum);
-        setDrawnNumbers(true);
-        break;
-      case "1":
         randNum = 10;
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
-      case "2":
+      case "1":
         randNum = 15;
+        drawNumbers(randNum);
+        setDrawnNumbers(true);
+        break;
+      case "2":
+        randNum = 20;
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
@@ -123,18 +134,30 @@ export function Addition({ operation, difficulty }) {
     for (let x = 0; x < numberOfLives; x++) {
       hearts.push(<img src={heart} key={x} className="liveHeart" />);
     }
-    if((numberOfLives<3)&&(numberOfLives>=0))
-    {
-      for (let x = 3; x > numberOfLives; x--)
-        hearts.push(<img src={heartBroken} key={x} className="liveHeart" />);
-        }
-
     return hearts;
   }
 
+  function checkPoints(points, lives) {
+    if (points >= 50) {
+      setDidPlayerWin(true);
+      console.log("win");
+    }
+    if (lives <= 0) {
+      setDidPlayerLose(true);
+      console.log("lose");
+    }
+    console.log(numberOfLives);
+  }
+  
+
   return (
     <>
+
+  
       <main>
+      
+        {didPlayerWin && <WinModal />}
+        {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">
             <span className="lives">{renderLives()}</span>
@@ -147,7 +170,8 @@ export function Addition({ operation, difficulty }) {
                   <span className="points">points: {numberOfPoints}</span>
                 </PointsBar>
                 <div className="main-character-icon">
-                  <img src={smilingGarfield} className="cat" />
+                  {checkAnswer && <img src={happyTom} className="cat" />}
+                  {!checkAnswer && <img src={angryTom} className="cat" />}
                 </div>
               </div>
               <div className="reward-icon">
@@ -169,6 +193,7 @@ export function Addition({ operation, difficulty }) {
                 type="number"
                 name="hard-mode-answer"
                 id="hard-mode-answer"
+                autoComplete="off"
                 value={inputAnswer}
                 onChange={(e) => {
                   setInputAnswer(e.target.value);
