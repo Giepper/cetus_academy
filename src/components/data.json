@@ -1,0 +1,66 @@
+{
+    "achievements":
+    [
+        {
+            "name": "WIN AN EASY GAME",
+            "description": "Complete a game in easy gamemode",
+            "winCondition": "gameCount",
+            "gameMode" : "easy",
+            "goal": 1        
+        },
+        {
+            "name": "10 EASY GAMES!",
+            "description": "Complete 10 games in easy gamemode",
+            "winCondition": "gameCount",
+            "gameMode" : "easy",
+            "goal": 10        
+        },
+        {
+            "name": "50 EASY GAMES",
+            "description": "Complete 50 games in easy gamemode",
+            "winCondition": "gameCount",
+            "gameMode" : "easy",
+            "goal": 50        
+        },
+
+        {
+            "name": "WIN A MEDIUM GAME",
+            "description": "Complete a game in medium gamemode",
+            "winCondition": "gameCount",
+            "gameMode" : "medium",
+            "goal": 1        
+        },
+        {
+            "name": "10 MEDIUM GAMES!",
+            "description": "Complete 10 games in medium gamemode",
+            "winCondition": "gameCount",
+            "gameMode" : "medium",
+            "goal": 10        
+        },
+        {
+            "name": "50 MEDIUM GAMES",
+            "description": "Complete 50 games in medium gamemode",
+            "winCondition": "gameCount",
+            "gameMode" : "medium",
+            "goal": 50        
+        },
+
+
+
+        {
+            "name": "Invincible",
+            "description": "Win a game without losing a life",
+            "winCondition": "lifeCount",
+            "gameMode" : "",
+            "goal": 1  
+        }
+
+        
+
+        
+    ]
+    
+
+
+
+}

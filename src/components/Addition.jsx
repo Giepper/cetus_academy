@@ -6,9 +6,7 @@ import "./Addition.css";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import heart from "../assets/heart.svg";
-// import heartBroken from "../assets/heart3.svg";
-
-import smilingGarfield from "../assets/smiling-garfield.svg";
+// import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
 import { WinModal } from "./WinModal";
 import { LoseModal } from "./LoseModal";
@@ -18,18 +16,20 @@ import angryTom from "../assets/angry-tom.svg";
 
 
 // import { SelectMode } from "./SelectMode";
-
+// let [isMusicPlaying, setIsMusicPlaying] = useState(true);
+let randomExponent = Math.random() < 0.5 ? 2 : 3;
 let num1;
 let num2;
 let answer;
 let randNum = 0;
 
 function drawNumbers(rand) {
-  num1 = Math.floor(Math.random() * rand); // Generate a random base number (1 to rand)
-  num2 = Math.floor(Math.random() * rand);    // Generate a random exponent (2 to 6)
+  num1 = Math.floor(Math.random() * rand);
+  num2 = Math.floor(Math.random() * rand);
 }
 
 drawNumbers();
+
 
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
@@ -76,7 +76,7 @@ export function Addition({ operation, difficulty }) {
   }
   // let x = 0;
   // let ops = ["+", "-", "×"];
-  
+
   let operator = "";
   switch (operation) {
     case "0":
@@ -126,6 +126,7 @@ export function Addition({ operation, difficulty }) {
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
+      default:
     }
   }
 
@@ -134,6 +135,11 @@ export function Addition({ operation, difficulty }) {
     for (let x = 0; x < numberOfLives; x++) {
       hearts.push(<img src={heart} key={x} className="liveHeart" />);
     }
+    if (numberOfLives < 3 && numberOfLives >= 0) {
+      for (let x = 3; x > numberOfLives; x--)
+        hearts.push(<img src={heartBroken} key={x} className="liveHeart" />);
+    }
+
     return hearts;
   }
 
@@ -181,10 +187,10 @@ export function Addition({ operation, difficulty }) {
           </div>
         </div>
         <div className="operation-container main-container-el">
-  <span className="operation-el first-num">{num1}</span>
-  <span className="operation-el operation">{operator}</span>
-  <span className="operation-el second-num"> {num2} = ?</span>
-</div>
+          <span className="operation-el first-num">{num1} </span>
+          <span className="operation-el operation">{operator}</span>
+          <span className="operation-el second-num"> {num2} = ?</span>
+        </div>
         <div className="answer-container main-container-el">
           <div className="easy-mode-answer-container"></div>
           <div className="hard-mode-answer-container">
@@ -200,7 +206,7 @@ export function Addition({ operation, difficulty }) {
                 }}
               />
               <button type="submit">Check Answer</button>
-              {checkAnswer && <p class="g">SUPER!</p>}
+              {checkAnswer && <p>SUPER!</p>}
             </form>
           </div>
         </div>
