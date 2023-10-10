@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
 
 #root {
-  max-width: 1280px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -43,81 +43,59 @@
   color: #888;
 }
 
-
-
-
-*
-{
-  font-family: 'Viga';
+* {
+  font-family: "Viga";
   color: white;
 }
 
-
-
-body
-{
+body {
   background-color: #381272;
 }
 
-button
-{
+button {
   padding: 12px 32px;
   border-radius: 16px;
   border: 6px solid;
   font-size: 36px;
   margin: 2px 4px;
-  color: #AA3300;
-  box-shadow: 0px 6px 4px 0.8px rgba(0,0,0,0.66);
-
+  color: #aa3300;
+  box-shadow: 0px 6px 4px 0.8px rgba(0, 0, 0, 0.66);
 }
 
-button:active
-{
+button:active {
   position: relative;
-  top:4px;
+  top: 4px;
   filter: brightness(75%);
-  box-shadow: 0px 0px 4px 0.8px rgba(0,0,0,0.66);
+  box-shadow: 0px 0px 4px 0.8px rgba(0, 0, 0, 0.66);
 }
 
+.select-operation-btn {
+  background-color: #ffaa00;
+  border-color: #dd6600;
 
-
-
-
-.select-operation-btn
-{
-  background-color: #FFAA00;
-  border-color: #DD6600;
-  
   text-shadow: 2px 0px 4px 4px red;
-
 }
 
-
-
-.easy-btn
-{
-  background-color: #00EE66;
+.easy-btn {
+  background-color: #00ee66;
   border-color: #008822;
-  color: #004400 ;
+  color: #004400;
 }
 
-.medium-btn
-{
-  background-color: #FFFF00;
+.medium-btn {
+  background-color: #ffff00;
   border-color: #999900;
   color: #555500;
 }
 
-.hard-btn
-{
-  background-color: #FF9900;
+.hard-btn {
+  background-color: #ff9900;
   border-color: #994400;
   color: #550000;
 }
 
-.extreme-btn
-{
-  background-color: #DD6644;
+.extreme-btn {
+  background-color: #dd6644;
   border-color: #992222;
   color: #550000;
 }

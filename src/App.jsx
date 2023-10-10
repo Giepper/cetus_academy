@@ -1,4 +1,5 @@
 import "./App.css";
+import data from "./components/data.json";
 
 // import { useState } from "react";
 import { useState } from "react";
@@ -7,14 +8,17 @@ import { SelectMode } from "./components/SelectMode";
 import { Menu } from "./components/Menu";
 import { SelectOperation } from "./components/SelectOperation";
 import { SoundComponent } from "./components/SoundComponent";
+import { Levels } from "./components/Levels";
 // import { Volume } from "./components/Volume";
 
 function App() {
   console.log("render");
+  console.log(data.levels[0].id);
   const [selectMode, setSelectMode] = useState(null);
   const [selectDifficulty, setSelectDifficulty] = useState(null);
   const [shouldComponentShown, setShouldComponentShown] = useState(false);
   const [shouldMenuShown, setShouldMenuShown] = useState(true);
+  const [shouldLevelsShown, setShouldLevelsShown] = useState(false);
   const [volume, setVolume] = useState(33);
 
   function handlerSelectOperation(e) {
@@ -29,7 +33,7 @@ function App() {
   }
 
   const handleStartClick = () => {
-    setShouldComponentShown(true);
+    setShouldLevelsShown(true);
     setShouldMenuShown(false);
   };
 
@@ -39,16 +43,23 @@ function App() {
     console.log(volume);
   }
 
+  function handlerSelectLevel(e) {
+    setShouldComponentShown(true);
+    setShouldLevelsShown(false);
+    console.log(e.target.value);
+  }
+
   return (
     <>
+      <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} />
+      {/* <Volume volume={volume} onVolumeChange={handleVolumeChange} /> */}
       {shouldMenuShown && (
         <Menu
           onStartClick={handleStartClick}
           onNewVolumeChange={handleVolumeChange}
         />
       )}
-      <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} />
-      {/* <Volume volume={volume} onVolumeChange={handleVolumeChange} /> */}
+      {shouldLevelsShown && <Levels onSelectLevel={handlerSelectLevel} />}
       {shouldComponentShown && (
         <section className="select-mode-container">
           <SelectOperation onSelectOperation={handlerSelectOperation} />

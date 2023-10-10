@@ -13,6 +13,8 @@ import { LoseModal } from "./LoseModal";
 import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
+// import data from "./data.json";
+// import { Levels } from "./Levels";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
@@ -66,7 +68,7 @@ export function Addition({ operation, difficulty }) {
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 1);
+      setNumberOfPoints(numberOfPoints + 20);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -82,7 +84,7 @@ export function Addition({ operation, difficulty }) {
   // let x = 0;
   // let ops = ["+", "-", "×"];
 
-  const [isDivisionNumberOk, setIsDivisionNumberOk] = useState(false);
+  // const [isDivisionNumberOk, setIsDivisionNumberOk] = useState(false);
 
   let operator = "";
   switch (operation) {
