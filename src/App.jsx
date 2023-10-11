@@ -7,7 +7,7 @@ import { Addition } from "./components/Addition";
 import { SelectMode } from "./components/SelectMode";
 import { Menu } from "./components/Menu";
 import { SelectOperation } from "./components/SelectOperation";
-import { SoundComponent } from "./components/SoundComponent";
+// import { SoundComponent } from "./components/SoundComponent";
 import { Levels } from "./components/Levels";
 // import { Volume } from "./components/Volume";
 
@@ -20,6 +20,7 @@ function App() {
   const [shouldMenuShown, setShouldMenuShown] = useState(true);
   const [shouldLevelsShown, setShouldLevelsShown] = useState(false);
   const [volume, setVolume] = useState(33);
+  const [levelValue, setLevelValue] = useState(1);
 
   function handlerSelectOperation(e) {
     setSelectMode(e.target.value);
@@ -46,12 +47,15 @@ function App() {
   function handlerSelectLevel(e) {
     setShouldComponentShown(true);
     setShouldLevelsShown(false);
-    console.log(e.target.value);
+    setLevelValue(e);
+    console.log("val", e);
+    console.log("levelValue", levelValue);
+    return e;
   }
 
   return (
     <>
-      <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} />
+      {/* <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} /> */}
       {/* <Volume volume={volume} onVolumeChange={handleVolumeChange} /> */}
       {shouldMenuShown && (
         <Menu
@@ -69,7 +73,11 @@ function App() {
         </section>
       )}
       {selectDifficulty && (
-        <Addition operation={selectMode} difficulty={selectDifficulty} />
+        <Addition
+          operation={selectMode}
+          difficulty={selectDifficulty}
+          levelValue={levelValue}
+        />
       )}
     </>
   );

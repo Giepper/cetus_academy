@@ -13,8 +13,7 @@ import { LoseModal } from "./LoseModal";
 import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
-// import data from "./data.json";
-// import { Levels } from "./Levels";
+import data from "./data.json";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
@@ -28,7 +27,6 @@ function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
   num2 = Math.floor(Math.random() * rand);
 }
-
 drawNumbers();
 
 function drawDivisionNumbers(rand) {
@@ -50,7 +48,7 @@ export const PointsBar = styled.div`
   border-bottom-left-radius: inherit;
 `;
 
-export function Addition({ operation, difficulty }) {
+export function Addition({ operation, difficulty, levelValue }) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -58,9 +56,27 @@ export function Addition({ operation, difficulty }) {
   const [didPlayerWin, setDidPlayerWin] = useState(false);
   const [didPlayerLose, setDidPlayerLose] = useState(false);
 
+  const [winPoints, setWinPoints] = useState(3);
+
+  function getLevel() {
+    console.log("jsonlevel", data.levels[0].id);
+    for (let x = 0; x < data.levels.length; x++) {
+      if (levelValue == data.levels[x].id) {
+        console.log("lv", levelValue);
+        console.log("jv", data.levels[x].id);
+        setWinPoints(data.levels[x].equations.length);
+        console.log("lives", data.levels[x].equations.length);
+        break;
+      }
+    }
+  }
+  useEffect(() => {
+    getLevel();
+  }, []);
+
   console.log(numberOfLives);
   useEffect(() => {
-    if (numberOfPoints < 50 || numberOfLives > 0) {
+    if (numberOfPoints < winPoints || numberOfLives > 0) {
       checkPoints(numberOfPoints, numberOfLives);
     }
   }, [numberOfPoints, numberOfLives]);
@@ -68,7 +84,7 @@ export function Addition({ operation, difficulty }) {
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 20);
+      setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -111,27 +127,27 @@ export function Addition({ operation, difficulty }) {
   if (!drawnNumbers) {
     switch (difficulty) {
       case "0":
-        randNum = 10;
+        randNum = data.levels[levelValue].multiplier[0];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
 
         setDrawnNumbers(true);
         break;
       case "1":
-        randNum = 15;
+        randNum = data.levels[levelValue].multiplier[1];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
 
         setDrawnNumbers(true);
         break;
       case "2":
-        randNum = 20;
+        randNum = data.levels[levelValue].multiplier[2];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
         setDrawnNumbers(true);
         break;
       case "3":
-        randNum = 25;
+        randNum = data.levels[levelValue].multiplier[3];
         drawDivisionNumbers(randNum);
         drawNumbers(randNum);
         setDrawnNumbers(true);
@@ -154,7 +170,7 @@ export function Addition({ operation, difficulty }) {
   }
 
   function checkPoints(points, lives) {
-    if (points >= 50) {
+    if (points >= winPoints) {
       setDidPlayerWin(true);
       console.log("win");
     }
@@ -168,7 +184,7 @@ export function Addition({ operation, difficulty }) {
   return (
     <>
       <main>
-        {didPlayerWin && <WinModal />}
+        {didPlayerWin && <WinModal onPlayerWin={didPlayerWin} />}
         {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">
