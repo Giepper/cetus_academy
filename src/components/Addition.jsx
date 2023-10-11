@@ -13,11 +13,12 @@ import { LoseModal } from "./LoseModal";
 import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
-
+// import data from "./data.json";
+// import { Levels } from "./Levels";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
-let randomExponent = Math.random() < 0.5 ? 2 : 3;
+// let randomExponent = Math.random() < 0.5 ? 2 : 3;
 let num1;
 let num2;
 let answer;
@@ -30,6 +31,12 @@ function drawNumbers(rand) {
 
 drawNumbers();
 
+function drawDivisionNumbers(rand) {
+  do {
+    num1 = Math.floor(Math.random() * rand);
+    num2 = Math.floor(Math.random() * rand);
+  } while (num2 === 0 && num1 % num2 !== 0);
+}
 
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
@@ -61,7 +68,7 @@ export function Addition({ operation, difficulty }) {
   function handleHardModeAnswer(e) {
     e.preventDefault();
     if (answer == inputAnswer) {
-      setNumberOfPoints(numberOfPoints + 1);
+      setNumberOfPoints(numberOfPoints + 20);
       setCheckAnswer(true);
       drawNumbers(randNum);
       setInputAnswer("");
@@ -77,6 +84,8 @@ export function Addition({ operation, difficulty }) {
   // let x = 0;
   // let ops = ["+", "-", "×"];
 
+  // const [isDivisionNumberOk, setIsDivisionNumberOk] = useState(false);
+
   let operator = "";
   switch (operation) {
     case "0":
@@ -91,15 +100,10 @@ export function Addition({ operation, difficulty }) {
       answer = num1 * num2;
       operator = "×";
       break;
-      case "3":
-        if(num1 < 10 && num1 > 0){
-      num2 = randomExponent;
-      answer = Math.pow(num1, num2);    
-        }else{
-          drawNumbers(randNum);
-        }
-        operator = `^`;
-   break;
+    case "3":
+      answer = num1 / num2;
+      operator = `/`;
+      break;
   }
 
   const [drawnNumbers, setDrawnNumbers] = useState(false);
@@ -109,20 +113,26 @@ export function Addition({ operation, difficulty }) {
       case "0":
         randNum = 10;
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
+
         setDrawnNumbers(true);
         break;
       case "1":
         randNum = 15;
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
+
         setDrawnNumbers(true);
         break;
       case "2":
         randNum = 20;
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
         setDrawnNumbers(true);
         break;
       case "3":
         randNum = 25;
+        drawDivisionNumbers(randNum);
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
@@ -154,14 +164,10 @@ export function Addition({ operation, difficulty }) {
     }
     console.log(numberOfLives);
   }
-  
 
   return (
     <>
-
-  
       <main>
-      
         {didPlayerWin && <WinModal />}
         {didPlayerLose && <LoseModal />}
         <div className="main-container">

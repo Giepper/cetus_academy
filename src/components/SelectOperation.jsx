@@ -33,7 +33,7 @@ export function SelectOperation(props) {
             value={3}
             onClick={handlerSelectOperation}
           >
-            ^
+            /
           </button>
           {/* <button className="select-operation-btn division-btn">/</button> */}
         </div>

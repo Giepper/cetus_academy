@@ -58,9 +58,39 @@
         
 
         
-    ]
-    
-
-
-
+    ],
+  "gameModes": [
+    {
+      "id": 1,
+      "type": "+"
+    },
+    {
+      "id": 2,
+      "type": "-"
+    },
+    {
+      "id": 3,
+      "type": "*"
+    },
+    {
+      "id": 4,
+      "type": "/"
+    }
+  ],
+  "levels": [
+    { "id": 0, "equations": "+++++", "multiplier": 5 },
+    { "id": 1, "equations": "-----", "multiplier": 5 },
+    { "id": 2, "equations": "*****", "multiplier": 5 },
+    { "id": 3, "equations": ":::::", "multiplier": 5 },
+    { "id": 4, "equations": "+-*/+", "multiplier": 10 },
+    { "id": 5, "equations": "--//++**", "multiplier": 20 },
+    { "id": 6, "equations": "+-+---/**/+", "multiplier": 25 },
+    { "id": 7, "equations": "+++---***///", "multiplier": 50 },
+    { "id": 8, "equations": "*-/++/-*--++", "multiplier": 75 },
+    {
+      "id": 9,
+      "equations": "+-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/",
+      "multiplier": 100
+    }
+  ]
 }

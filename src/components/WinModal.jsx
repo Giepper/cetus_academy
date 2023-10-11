@@ -1,4 +1,4 @@
-import "./EndGame.css";
+import "./Modal.css";
 // import happyGarfield from "../assets/happy-garfield.svg";
 // import pinkSock from "../assets/pink-sock.svg";
 import tomInSock from "../assets/tom-in-sock2.svg";

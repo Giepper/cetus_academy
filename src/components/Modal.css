@@ -1,4 +1,5 @@
-.win-modal-container {
+.win-modal-container,
+.modal-container {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -12,16 +13,18 @@
   animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.5, 2, 0.5, 1);
 }
-.win-background {
+.win-background,
+.background {
   background-color: #5500aa;
   width: 100vw;
-  height: 100vh;
+  height: 300vh;
   position: fixed;
-  top: 0;
+  top: -100vh;
   left: 0;
   z-index: 900;
 }
-.win-modal {
+.win-modal,
+.modal {
   position: fixed;
   z-index: 999;
 }

@@ -1,0 +1,39 @@
+.levels-wrapper {
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.level-container {
+  width: 100px;
+  height: 200px;
+}
+.cat-box {
+  width: 100px;
+  height: 100px;
+}
+.level {
+  width: 100%;
+  height: 100px;
+  background-color: #381272;
+  border: 3px solid #200942;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 150%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.level-passed {
+  background-color: #00ee66;
+  border-color: #008822;
+  color: #004400;
+}
+.level-unlocked {
+  background-color: #4d189e;
+  border: 3px solid #2a0b5a;
+  color: #fff;
+}

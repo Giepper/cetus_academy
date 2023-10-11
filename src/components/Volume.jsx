@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import { Howl } from "howler";
 import music from "../assets/music.mp3";
+import "./Volume.css";
 
-export function SoundComponent(props) {
-  // const handleVolumeChange = (e) => {
-  //   props.onVolumeChange(e);
-  // };
-
+export function Volume(props) {
   useEffect(() => {
     const sound = new Howl(
       {
@@ -23,18 +20,22 @@ export function SoundComponent(props) {
       sound.unload();
     };
   }, [props.volume]);
+  const handleVolumeChange = (e) => {
+    props.onVolumeChange(e);
+  };
   return (
     <>
-      {/* <div className="volume-control">
+      <div className="volume-control">
         <h2>Volume</h2>
         <input
+          className="volume-input"
           type="range"
           min="0"
           max="100"
           value={props.volume}
           onChange={handleVolumeChange}
         />
-      </div> */}
+      </div>
     </>
   );
 }
