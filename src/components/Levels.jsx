@@ -9,35 +9,13 @@ export function Levels(props) {
     }
   };
 
-  const levelClasses = [
-    "level lvl-1",
-    "level lvl-2",
-    "level lvl-3",
-    "level lvl-4",
-    "level lvl-5",
-    "level lvl-6",
-    "level lvl-7",
-    "level lvl-8",
-    "level lvl-9",
-    "level lvl-10",
-  ];
-
-  if (props.didPlayerWin) {
-    levelClasses.forEach((className, index) => {
-      const levelElement = document.querySelector(`.${className}`);
-      if (levelElement) {
-        levelElement.classList.add("level-unlocked");
-      }
-    });
-  }
-
   return (
     <>
       <div className="levels-wrapper">
         <div className="level-container">
           <div className="cat-box"></div>
           <div
-            className="level lvl-1 level-unlocked"
+            className="level lvl-1 level-unlocked level-passed"
             value="0"
             onClick={handlerSelectLevel}
           >
@@ -46,7 +24,11 @@ export function Levels(props) {
         </div>
         <div className="level-container">
           <div className="cat-box"></div>
-          <div className="level lvl-2" value="1" onClick={handlerSelectLevel}>
+          <div
+            className="level lvl-2 level-unlocked"
+            value="1"
+            onClick={handlerSelectLevel}
+          >
             2
           </div>
         </div>
@@ -94,7 +76,11 @@ export function Levels(props) {
         </div>
         <div className="level-container">
           <div className="cat-box"></div>
-          <div className="level lvl-10" value="9" onClick={handlerSelectLevel}>
+          <div
+            className="level lvl-10 level-unlocked"
+            value="9"
+            onClick={handlerSelectLevel}
+          >
             10
           </div>
         </div>

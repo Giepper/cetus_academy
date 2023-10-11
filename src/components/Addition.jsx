@@ -184,7 +184,7 @@ export function Addition({ operation, difficulty, levelValue }) {
   return (
     <>
       <main>
-        {didPlayerWin && <WinModal onPlayerWin={didPlayerWin} />}
+        {didPlayerWin && <WinModal />}
         {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">

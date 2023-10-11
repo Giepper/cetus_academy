@@ -41,7 +41,7 @@ button[type="submit"] {
 }
 
 .points-bar-container {
-  width: 60vw;
+  width: 70vw;
   max-width: inherit;
   height: 40px;
   background-color: black;

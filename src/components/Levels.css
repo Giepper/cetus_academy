@@ -27,13 +27,15 @@
   justify-content: center;
   align-items: center;
 }
-.level-passed {
-  background-color: #00ee66;
-  border-color: #008822;
-  color: #004400;
-}
+
 .level-unlocked {
   background-color: #4d189e;
   border: 3px solid #2a0b5a;
   color: #fff;
+}
+
+.level-passed {
+  background-color: #00ee66;
+  border-color: #008822;
+  color: #004400;
 }
