@@ -14,6 +14,7 @@ import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
 import data from "./data.json";
+import { Levels } from "./Levels";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
@@ -22,6 +23,7 @@ let num1;
 let num2;
 let answer;
 let randNum = 0;
+let lv;
 
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
@@ -48,7 +50,7 @@ export const PointsBar = styled.div`
   border-bottom-left-radius: inherit;
 `;
 
-export function Addition({ operation, difficulty, levelValue }) {
+export function Addition({ operation, difficulty, levelValue }, props) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -181,10 +183,25 @@ export function Addition({ operation, difficulty, levelValue }) {
     console.log(numberOfLives);
   }
 
+  lv = levelValue;
+  {
+    didPlayerWin && localStorage.setItem("isWin", didPlayerWin);
+  }
+  {
+    didPlayerWin && localStorage.setItem("actualLevel", levelValue);
+  }
+
   return (
     <>
       <main>
         {didPlayerWin && <WinModal />}
+        {didPlayerWin && (
+          <Levels
+            playerWin={didPlayerWin}
+            actualLevel={levelValue}
+            style="position:absolute;z-index:-100"
+          />
+        )}
         {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">

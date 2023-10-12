@@ -1,6 +1,15 @@
 import "./Levels.css";
 
-export function Levels(props) {
+export function Levels(props, { playerWin, actualLevel }) {
+  const isWin = localStorage.getItem("isWin");
+  const previousLevel = localStorage.getItem("actualLevel");
+  let lvl = 0;
+  console.log("playerWin", isWin);
+  console.log("acutalLevel", previousLevel);
+  if (isWin) {
+    lvl = parseInt(previousLevel);
+    lvl++;
+  }
   const handlerSelectLevel = (e) => {
     if (e.target.classList.contains("level-unlocked")) {
       const levelValue = parseInt(e.target.getAttribute("value"));
