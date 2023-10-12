@@ -1,20 +1,24 @@
 import "./Levels.css";
 
-export function Levels(props, { playerWin, actualLevel }) {
-  const isWin = localStorage.getItem("isWin");
-  const previousLevel = localStorage.getItem("actualLevel");
-  let lvl = 0;
-  console.log("playerWin", isWin);
-  console.log("acutalLevel", previousLevel);
-  if (isWin) {
-    lvl = parseInt(previousLevel);
-    lvl++;
+export function Levels(props) {
+  function checkLevel() {
+    const isWin = localStorage.getItem("isWin");
+    const previousLevel = localStorage.getItem("actualLevel");
+    const newLevel = localStorage.getItem("possiblyNewLevel");
+    console.log("playerWin", isWin);
+    console.log("acutalLevel", previousLevel);
+    console.log("possiblyNewLevel", newLevel);
   }
+  checkLevel();
+
   const handlerSelectLevel = (e) => {
     if (e.target.classList.contains("level-unlocked")) {
       const levelValue = parseInt(e.target.getAttribute("value"));
       props.onSelectLevel(levelValue);
       console.log("vak2", levelValue);
+      let tmp;
+      tmp = levelValue + 1;
+      localStorage.setItem("possiblyNewLevel", tmp);
     }
   };
 
@@ -24,8 +28,8 @@ export function Levels(props, { playerWin, actualLevel }) {
         <div className="level-container">
           <div className="cat-box"></div>
           <div
-            className="level lvl-1 level-unlocked level-passed"
-            value="0"
+            className="level lvl-1 level-unlocked"
+            value={0}
             onClick={handlerSelectLevel}
           >
             1
@@ -33,11 +37,7 @@ export function Levels(props, { playerWin, actualLevel }) {
         </div>
         <div className="level-container">
           <div className="cat-box"></div>
-          <div
-            className="level lvl-2 level-unlocked"
-            value="1"
-            onClick={handlerSelectLevel}
-          >
+          <div className="level lvl-2" value="1" onClick={handlerSelectLevel}>
             2
           </div>
         </div>
@@ -85,11 +85,7 @@ export function Levels(props, { playerWin, actualLevel }) {
         </div>
         <div className="level-container">
           <div className="cat-box"></div>
-          <div
-            className="level lvl-10 level-unlocked"
-            value="9"
-            onClick={handlerSelectLevel}
-          >
+          <div className="level lvl-10" value="9" onClick={handlerSelectLevel}>
             10
           </div>
         </div>

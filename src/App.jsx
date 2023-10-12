@@ -10,6 +10,7 @@ import { SelectOperation } from "./components/SelectOperation";
 // import { SoundComponent } from "./components/SoundComponent";
 import { Levels } from "./components/Levels";
 // import { Volume } from "./components/Volume";
+localStorage.setItem("isWin", false);
 
 function App() {
   console.log("render");

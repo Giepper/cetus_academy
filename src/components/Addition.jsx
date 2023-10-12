@@ -23,7 +23,7 @@ let num1;
 let num2;
 let answer;
 let randNum = 0;
-let lv;
+// let lv;
 
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
@@ -50,7 +50,7 @@ export const PointsBar = styled.div`
   border-bottom-left-radius: inherit;
 `;
 
-export function Addition({ operation, difficulty, levelValue }, props) {
+export function Addition({ operation, difficulty, levelValue }) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -183,12 +183,18 @@ export function Addition({ operation, difficulty, levelValue }, props) {
     console.log(numberOfLives);
   }
 
-  lv = levelValue;
+  // lv = levelValue;
+  let lv = 0;
+  if (didPlayerWin) {
+    lv = levelValue;
+  }
+  console.log("lv", levelValue);
+  console.log("nwLV", lv);
   {
     didPlayerWin && localStorage.setItem("isWin", didPlayerWin);
   }
   {
-    didPlayerWin && localStorage.setItem("actualLevel", levelValue);
+    didPlayerWin && localStorage.setItem("actualLevel", lv);
   }
 
   return (
