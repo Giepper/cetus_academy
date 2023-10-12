@@ -13,23 +13,30 @@ import { LoseModal } from "./LoseModal";
 import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
-
+import data from "./data.json";
+import { Levels } from "./Levels";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
-let randomExponent = Math.random() < 0.5 ? 2 : 3;
+// let randomExponent = Math.random() < 0.5 ? 2 : 3;
 let num1;
 let num2;
 let answer;
 let randNum = 0;
+let lv;
 
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
   num2 = Math.floor(Math.random() * rand);
 }
-
 drawNumbers();
 
+function drawDivisionNumbers(rand) {
+  do {
+    num1 = Math.floor(Math.random() * rand);
+    num2 = Math.floor(Math.random() * rand);
+  } while (num2 === 0 && num1 % num2 !== 0);
+}
 
 export const PointsBar = styled.div`
   width: ${(props) => props.width}%;
@@ -43,7 +50,7 @@ export const PointsBar = styled.div`
   border-bottom-left-radius: inherit;
 `;
 
-export function Addition({ operation, difficulty }) {
+export function Addition({ operation, difficulty, levelValue }, props) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -51,9 +58,27 @@ export function Addition({ operation, difficulty }) {
   const [didPlayerWin, setDidPlayerWin] = useState(false);
   const [didPlayerLose, setDidPlayerLose] = useState(false);
 
+  const [winPoints, setWinPoints] = useState(3);
+
+  function getLevel() {
+    console.log("jsonlevel", data.levels[0].id);
+    for (let x = 0; x < data.levels.length; x++) {
+      if (levelValue == data.levels[x].id) {
+        console.log("lv", levelValue);
+        console.log("jv", data.levels[x].id);
+        setWinPoints(data.levels[x].equations.length);
+        console.log("lives", data.levels[x].equations.length);
+        break;
+      }
+    }
+  }
+  useEffect(() => {
+    getLevel();
+  }, []);
+
   console.log(numberOfLives);
   useEffect(() => {
-    if (numberOfPoints < 50 || numberOfLives > 0) {
+    if (numberOfPoints < winPoints || numberOfLives > 0) {
       checkPoints(numberOfPoints, numberOfLives);
     }
   }, [numberOfPoints, numberOfLives]);
@@ -77,6 +102,8 @@ export function Addition({ operation, difficulty }) {
   // let x = 0;
   // let ops = ["+", "-", "×"];
 
+  // const [isDivisionNumberOk, setIsDivisionNumberOk] = useState(false);
+
   let operator = "";
   switch (operation) {
     case "0":
@@ -91,15 +118,10 @@ export function Addition({ operation, difficulty }) {
       answer = num1 * num2;
       operator = "×";
       break;
-      case "3":
-        if(num1 < 10 && num1 > 0){
-      num2 = randomExponent;
-      answer = Math.pow(num1, num2);    
-        }else{
-          drawNumbers(randNum);
-        }
-        operator = `^`;
-   break;
+    case "3":
+      answer = num1 / num2;
+      operator = `/`;
+      break;
   }
 
   const [drawnNumbers, setDrawnNumbers] = useState(false);
@@ -107,22 +129,28 @@ export function Addition({ operation, difficulty }) {
   if (!drawnNumbers) {
     switch (difficulty) {
       case "0":
-        randNum = 10;
+        randNum = data.levels[levelValue].multiplier[0];
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
+
         setDrawnNumbers(true);
         break;
       case "1":
-        randNum = 15;
+        randNum = data.levels[levelValue].multiplier[1];
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
+
         setDrawnNumbers(true);
         break;
       case "2":
-        randNum = 20;
+        randNum = data.levels[levelValue].multiplier[2];
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
         setDrawnNumbers(true);
         break;
       case "3":
-        randNum = 25;
+        randNum = data.levels[levelValue].multiplier[3];
+        drawDivisionNumbers(randNum);
         drawNumbers(randNum);
         setDrawnNumbers(true);
         break;
@@ -144,7 +172,7 @@ export function Addition({ operation, difficulty }) {
   }
 
   function checkPoints(points, lives) {
-    if (points >= 50) {
+    if (points >= winPoints) {
       setDidPlayerWin(true);
       console.log("win");
     }
@@ -154,15 +182,26 @@ export function Addition({ operation, difficulty }) {
     }
     console.log(numberOfLives);
   }
-  
+
+  lv = levelValue;
+  {
+    didPlayerWin && localStorage.setItem("isWin", didPlayerWin);
+  }
+  {
+    didPlayerWin && localStorage.setItem("actualLevel", levelValue);
+  }
 
   return (
     <>
-
-  
       <main>
-      
         {didPlayerWin && <WinModal />}
+        {didPlayerWin && (
+          <Levels
+            playerWin={didPlayerWin}
+            actualLevel={levelValue}
+            style="position:absolute;z-index:-100"
+          />
+        )}
         {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">
