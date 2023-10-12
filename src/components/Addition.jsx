@@ -23,7 +23,7 @@ let num1;
 let num2;
 let answer;
 let randNum = 0;
-// let lv;
+let lvlNum = 0;
 
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
