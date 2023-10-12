@@ -7,6 +7,7 @@ import { Addition } from "./components/Addition";
 import { SelectMode } from "./components/SelectMode";
 import { Menu } from "./components/Menu";
 import { SelectOperation } from "./components/SelectOperation";
+
 // import { SoundComponent } from "./components/SoundComponent";
 import { Levels } from "./components/Levels";
 // import { Volume } from "./components/Volume";
@@ -80,6 +81,7 @@ function App() {
           levelValue={levelValue}
         />
       )}
+      
     </>
   );
 }
