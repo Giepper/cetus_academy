@@ -23,6 +23,7 @@ let num1;
 let num2;
 let answer;
 let randNum = 0;
+let lvlNum = 0;
 let lv;
 
 function drawNumbers(rand) {
@@ -63,6 +64,7 @@ export function Addition({ operation, difficulty, levelValue }, props) {
   function getLevel() {
     console.log("jsonlevel", data.levels[0].id);
     for (let x = 0; x < data.levels.length; x++) {
+      lvlNum = data.levels[x].equations.length;
       if (levelValue == data.levels[x].id) {
         console.log("lv", levelValue);
         console.log("jv", data.levels[x].id);
@@ -211,7 +213,7 @@ export function Addition({ operation, difficulty, levelValue }, props) {
             <br />
             <div className="points-bar-upper-container">
               <div className="points-bar-container">
-                <PointsBar width={numberOfPoints * 2}>
+                <PointsBar width={numberOfPoints*100/lvlNum}>
                   <span className="points">points: {numberOfPoints}</span>
                 </PointsBar>
                 <div className="main-character-icon">

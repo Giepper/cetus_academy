@@ -6,11 +6,16 @@ let numberOfAchievements = data.achievements.length;
 let completedAchievements = 1;
 
 
+import "./Modal.css";
 
-export function Achievements() {
-    const achievements = [];
+export function Achievements(props) {
+  const handleBackToMenu = () => {
+    props.onBackToMenu();
+  };
 
-function renderAchievements() {
+  const achievements = [];
+
+  function renderAchievements() {
 
     for(let x = 0; x < (numberOfAchievements-completedAchievements); x++)
     {
@@ -29,10 +34,22 @@ function renderAchievements() {
         )
     }
     return achievements;
+  }
 
+
+
+  return (
+    <>
+      <div className="modal-container">
+        <div className="background"></div>
+        <div className="modal">
+          <h2>Achievements</h2>
+          <div className='achievementWrapper'>{renderAchievements()}</div>
+          <button className="menu-btn back-btn" onClick={handleBackToMenu}>
+            Back
+          </button>
+        </div>
+      </div>
+    </>
+  );
 }
-
-    return <div className='achievementWrapper'>{renderAchievements()}</div>
-
-}
-

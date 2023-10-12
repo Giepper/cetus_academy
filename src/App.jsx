@@ -7,8 +7,6 @@ import { Addition } from "./components/Addition";
 import { SelectMode } from "./components/SelectMode";
 import { Menu } from "./components/Menu";
 import { SelectOperation } from "./components/SelectOperation";
-import { Achievements } from "./components/Achievements";
-// import { Achievements } from "./components/Achievements";
 
 // import { SoundComponent } from "./components/SoundComponent";
 import { Levels } from "./components/Levels";
