@@ -81,7 +81,6 @@ function App() {
           levelValue={levelValue}
         />
       )}
-      
     </>
   );
 }
