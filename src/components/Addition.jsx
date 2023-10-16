@@ -4,17 +4,16 @@
 
 import "./Addition.css";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import heart from "../assets/heart.svg";
 // import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
 import { WinModal } from "./WinModal";
 import { LoseModal } from "./LoseModal";
-import heartBroken from "../assets/heart3.svg";
 import happyTom from "../assets/happy-tom.svg";
 import angryTom from "../assets/angry-tom.svg";
 import data from "./data.json";
 import { Levels } from "./Levels";
+import { RenderLives } from "./RenderLives";
+import { PointsBar } from "./PointsBar";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
@@ -38,18 +37,6 @@ function drawDivisionNumbers(rand) {
   } while (num2 === 0 && num1 % num2 !== 0);
 }
 
-export const PointsBar = styled.div`
-  width: ${(props) => props.width}%;
-  height: 40px;
-  position: relative;
-  background-color: green;
-  transition-property: width;
-  transition-duration: 1s;
-  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-  border-top-left-radius: inherit;
-  border-bottom-left-radius: inherit;
-`;
-
 export function Addition({ operation, difficulty, levelValue }) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
@@ -59,6 +46,7 @@ export function Addition({ operation, difficulty, levelValue }) {
   const [didPlayerLose, setDidPlayerLose] = useState(false);
 
   const [winPoints, setWinPoints] = useState(3);
+  console.log("dpw", didPlayerWin);
 
   function getLevel() {
     console.log("jsonlevel", data.levels[0].id);
@@ -159,19 +147,6 @@ export function Addition({ operation, difficulty, levelValue }) {
     }
   }
 
-  function renderLives() {
-    const hearts = [];
-    for (let x = 0; x < numberOfLives; x++) {
-      hearts.push(<img src={heart} key={x} className="liveHeart" />);
-    }
-    if (numberOfLives < 3 && numberOfLives >= 0) {
-      for (let x = 3; x > numberOfLives; x--)
-        hearts.push(<img src={heartBroken} key={x} className="liveHeart" />);
-    }
-
-    return hearts;
-  }
-
   function checkPoints(points, lives) {
     if (points >= winPoints) {
       setDidPlayerWin(true);
@@ -212,7 +187,9 @@ export function Addition({ operation, difficulty, levelValue }) {
         {didPlayerLose && <LoseModal />}
         <div className="main-container">
           <div className="stats-bar">
-            <span className="lives">{renderLives()}</span>
+            <span className="lives">
+              <RenderLives numberOfLives={numberOfLives} />
+            </span>
             <br />
 
             <br />

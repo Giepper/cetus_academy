@@ -40,7 +40,7 @@ export function Levels(props) {
                 key={index}
                 className={`level lvl-${index + 1} ${
                   index <= newLevel ? "level-unlocked" : ""
-                }`}
+                } ${index <= previousLevel ? "level-passed" : ""}`}
                 value={index}
                 onClick={handlerSelectLevel}
               >
