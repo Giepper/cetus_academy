@@ -14,6 +14,7 @@ import data from "./data.json";
 import { Levels } from "./Levels";
 import { RenderLives } from "./RenderLives";
 import { PointsBar } from "./PointsBar";
+import "./chance.js";
 
 // import { SelectMode } from "./SelectMode";
 // let [isMusicPlaying, setIsMusicPlaying] = useState(true);
@@ -33,8 +34,8 @@ drawNumbers();
 function drawDivisionNumbers(rand) {
   do {
     num1 = Math.floor(Math.random() * rand);
-    num2 = Math.floor(Math.random() * rand);
-  } while (num2 === 0 && num1 % num2 !== 0);
+    num2 = chance.integer({ min: 1, max: 10 });
+  } while (num1 % num2 != 0);
 }
 
 export function Addition({ operation, difficulty, levelValue }) {
@@ -46,17 +47,12 @@ export function Addition({ operation, difficulty, levelValue }) {
   const [didPlayerLose, setDidPlayerLose] = useState(false);
 
   const [winPoints, setWinPoints] = useState(3);
-  console.log("dpw", didPlayerWin);
 
   function getLevel() {
-    console.log("jsonlevel", data.levels[0].id);
     for (let x = 0; x < data.levels.length; x++) {
       lvlNum = data.levels[x].equations.length;
       if (levelValue == data.levels[x].id) {
-        console.log("lv", levelValue);
-        console.log("jv", data.levels[x].id);
         setWinPoints(data.levels[x].equations.length);
-        console.log("lives", data.levels[x].equations.length);
         break;
       }
     }
@@ -65,7 +61,6 @@ export function Addition({ operation, difficulty, levelValue }) {
     getLevel();
   }, []);
 
-  console.log(numberOfLives);
   useEffect(() => {
     if (numberOfPoints < winPoints || numberOfLives > 0) {
       checkPoints(numberOfPoints, numberOfLives);
@@ -77,7 +72,11 @@ export function Addition({ operation, difficulty, levelValue }) {
     if (answer == inputAnswer) {
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
-      drawNumbers(randNum);
+      if (operator != "/") {
+        drawNumbers(randNum);
+      } else {
+        drawDivisionNumbers(randNum);
+      }
       setInputAnswer("");
     } else {
       if (numberOfPoints > 0) {
@@ -139,8 +138,9 @@ export function Addition({ operation, difficulty, levelValue }) {
         break;
       case "3":
         randNum = data.levels[levelValue].multiplier[3];
-        drawDivisionNumbers(randNum);
         drawNumbers(randNum);
+        drawDivisionNumbers(randNum);
+
         setDrawnNumbers(true);
         break;
       default:
@@ -150,11 +150,9 @@ export function Addition({ operation, difficulty, levelValue }) {
   function checkPoints(points, lives) {
     if (points >= winPoints) {
       setDidPlayerWin(true);
-      console.log("win");
     }
     if (lives <= 0) {
       setDidPlayerLose(true);
-      console.log("lose");
     }
     console.log(numberOfLives);
   }
@@ -164,8 +162,6 @@ export function Addition({ operation, difficulty, levelValue }) {
   if (didPlayerWin) {
     lv = levelValue;
   }
-  console.log("lv", levelValue);
-  console.log("nwLV", lv);
   {
     didPlayerWin && localStorage.setItem("isWin", didPlayerWin);
   }

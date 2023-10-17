@@ -1,5 +1,4 @@
 import "./App.css";
-import data from "./components/data.json";
 
 // import { useState } from "react";
 import { useState } from "react";
@@ -14,8 +13,6 @@ import { Levels } from "./components/Levels";
 localStorage.setItem("isWin", false);
 
 function App() {
-  console.log("render");
-  console.log(data.levels[0].id);
   const [selectMode, setSelectMode] = useState(null);
   const [selectDifficulty, setSelectDifficulty] = useState(null);
   const [shouldComponentShown, setShouldComponentShown] = useState(false);
@@ -31,7 +28,6 @@ function App() {
   function handlerSelectDifficulty(e) {
     const newDifficulty = e.target.value;
     setSelectDifficulty(newDifficulty);
-    console.log("sd", newDifficulty);
     setShouldComponentShown(false);
   }
 
@@ -50,8 +46,6 @@ function App() {
     setShouldComponentShown(true);
     setShouldLevelsShown(false);
     setLevelValue(e);
-    console.log("val", e);
-    console.log("levelValue", levelValue);
     return e;
   }
 
