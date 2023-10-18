@@ -34,6 +34,29 @@
 .end-game-sock {
   width: 50%;
 }
+.themes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.theme {
+  width: 100px;
+  height: 100px;
+}
+.color-theme {
+  background: rgb(0, 238, 102);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 238, 102, 1) 0%,
+    rgba(255, 153, 0, 1) 35%,
+    rgba(221, 102, 68, 1) 60%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+.mono-theme {
+  background-color: #23094b;
+}
 
 @keyframes endGameAnim {
   0% {
@@ -65,3 +88,8 @@
     transform: translateY(0);
   }
 }
+/* button {
+  background-color: #23094b;
+  border-color: #fff;
+  color: #fff;
+} */

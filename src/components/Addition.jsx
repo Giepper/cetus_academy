@@ -140,7 +140,6 @@ export function Addition({ operation, difficulty, levelValue }) {
         randNum = data.levels[levelValue].multiplier[3];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
-
         setDrawnNumbers(true);
         break;
       default:

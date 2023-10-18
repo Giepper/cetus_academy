@@ -30,7 +30,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -109,3 +109,8 @@ span.points {
 h2 {
   font-size: 2rem;
 }
+/* button {
+  background-color: #23094b;
+  border-color: #fff;
+  color: #fff;
+} */

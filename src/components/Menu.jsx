@@ -32,7 +32,7 @@ export function Menu(props) {
   const handleVolumeChange = (e) => {
     props.onNewVolumeChange(e);
   };
-
+  const handleThemeChange = (e) => {};
   return (
     <>
       {shouldCreditsShown && <Credits onBackToMenu={handleBackToMenu} />}
@@ -43,6 +43,7 @@ export function Menu(props) {
         <Settings
           onBackToMenu={handleBackToMenu}
           onVolumeChange={handleVolumeChange}
+          onThemeChange={handleThemeChange}
         />
       )}
       <div className="menu-container">
