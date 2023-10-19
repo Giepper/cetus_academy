@@ -1,4 +1,5 @@
 import "./menu.css";
+import "./Button.css";
 // import logo from "../assets/logo.svg";
 import { Achievements } from "./Achievements";
 import { Settings } from "./Settings";
@@ -10,6 +11,8 @@ export function Menu(props) {
   const [shouldAchievementsShown, setShouldAchievementsShown] = useState(false);
   const [shouldCreditsShown, setShouldCreditsShown] = useState(false);
   const [shouldSettingsShown, setShouldSettingsShown] = useState(false);
+  const [isColorTheme, setIsColorTheme] = useState(true);
+  const [isMonoTheme, setIsMonoTheme] = useState(false);
 
   const handleStartClick = () => {
     // Wywołujemy funkcję przekazaną z App po wciśnięciu przycisku "Start"
@@ -32,7 +35,19 @@ export function Menu(props) {
   const handleVolumeChange = (e) => {
     props.onNewVolumeChange(e);
   };
-  const handleThemeChange = (e) => {};
+  const handleThemeChange = (e) => {
+    props.onThemeChange(e);
+    switch (e.target.getAttribute("value")) {
+      case "mono":
+        setIsMonoTheme(true);
+        setIsColorTheme(false);
+        break;
+      case "color":
+        setIsMonoTheme(false);
+        setIsColorTheme(true);
+        break;
+    }
+  };
   return (
     <>
       {shouldCreditsShown && <Credits onBackToMenu={handleBackToMenu} />}
@@ -54,23 +69,34 @@ export function Menu(props) {
         </header>
         <main>
           <div className="menu-btn-container">
-            <button className="menu-btn start-btn" onClick={handleStartClick}>
+            <button
+              className={`menu-btn ${isColorTheme ? "start-btn" : ""} ${
+                isMonoTheme ? "mono-btn" : ""
+              }`}
+              onClick={handleStartClick}
+            >
               Start
             </button>
             <button
-              className="menu-btn achievements-btn"
+              className={`menu-btn ${isColorTheme ? "achievements-btn" : ""} ${
+                isMonoTheme ? "mono-btn" : ""
+              }`}
               onClick={handleAchievementsClick}
             >
               Achievements
             </button>
             <button
-              className="menu-btn settings-btn"
+              className={`menu-btn ${isColorTheme ? "settings-btn" : ""} ${
+                isMonoTheme ? "mono-btn" : ""
+              }`}
               onClick={handleSettingsClick}
             >
               Settings
             </button>
             <button
-              className="menu-btn credits-btn"
+              className={`menu-btn ${isColorTheme ? "credits-btn" : ""} ${
+                isMonoTheme ? "mono-btn" : ""
+              }`}
               onClick={handleCreditsClick}
             >
               Credits

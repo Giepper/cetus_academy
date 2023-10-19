@@ -12,28 +12,3 @@ header {
   display: flex;
   flex-direction: column;
 }
-.start-btn {
-  background-color: #00ee66;
-  border-color: #008822;
-  color: #004400;
-}
-.settings-btn {
-  background-color: #ff9900;
-  border-color: #994400;
-  color: #550000;
-}
-.credits-btn {
-  background-color: #ffff00;
-  border-color: #999900;
-  color: #555500;
-}
-.achievements-btn {
-  background-color: #dd6644;
-  border-color: #992222;
-  color: #550000;
-}
-.mono-btn {
-  background-color: #23094b;
-  border-color: #fff;
-  color: #fff;
-}

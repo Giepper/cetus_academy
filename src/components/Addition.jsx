@@ -3,6 +3,7 @@
 //   break;
 
 import "./Addition.css";
+import "./Button.css";
 import { useEffect, useState } from "react";
 // import smilingGarfield from "../assets/smiling-garfield.svg";
 import pinkSock from "../assets/pink-sock.svg";
@@ -38,7 +39,13 @@ function drawDivisionNumbers(rand) {
   } while (num1 % num2 != 0);
 }
 
-export function Addition({ operation, difficulty, levelValue }) {
+export function Addition({
+  operation,
+  difficulty,
+  levelValue,
+  isMonoTheme,
+  isColorTheme,
+}) {
   const [inputAnswer, setInputAnswer] = useState("");
   const [checkAnswer, setCheckAnswer] = useState(false);
   const [numberOfPoints, setNumberOfPoints] = useState(0);
@@ -223,7 +230,14 @@ export function Addition({ operation, difficulty, levelValue }) {
                   setInputAnswer(e.target.value);
                 }}
               />
-              <button type="submit">Check Answer</button>
+              <button
+                type="submit"
+                className={`${isColorTheme ? "check-answer-btn" : ""}${
+                  isMonoTheme ? "mono-btn" : ""
+                }`}
+              >
+                Check Answer
+              </button>
               {checkAnswer && <p>SUPER!</p>}
             </form>
           </div>

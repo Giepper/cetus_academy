@@ -1,0 +1,60 @@
+.start-btn {
+  background-color: #00ee66;
+  border-color: #008822;
+  color: #004400;
+}
+.settings-btn {
+  background-color: #ff9900;
+  border-color: #994400;
+  color: #550000;
+}
+.credits-btn {
+  background-color: #ffff00;
+  border-color: #999900;
+  color: #555500;
+}
+.achievements-btn {
+  background-color: #dd6644;
+  border-color: #992222;
+  color: #550000;
+}
+.check-answer-btn {
+  background-color: #00ee66;
+  border-color: #008822;
+  color: #004400;
+}
+.select-operation-btn {
+  background-color: #ffaa00;
+  border-color: #dd6600;
+
+  text-shadow: 2px 0px 4px 4px red;
+}
+
+.easy-btn {
+  background-color: #00ee66;
+  border-color: #008822;
+  color: #004400;
+}
+
+.medium-btn {
+  background-color: #ffff00;
+  border-color: #999900;
+  color: #555500;
+}
+
+.hard-btn {
+  background-color: #ff9900;
+  border-color: #994400;
+  color: #550000;
+}
+
+.extreme-btn {
+  background-color: #dd6644;
+  border-color: #992222;
+  color: #550000;
+}
+.mono-btn {
+  background-color: #23094b;
+  border-color: #fff;
+  color: #fff;
+}

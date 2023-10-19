@@ -20,6 +20,8 @@ function App() {
   const [shouldLevelsShown, setShouldLevelsShown] = useState(false);
   const [volume, setVolume] = useState(33);
   const [levelValue, setLevelValue] = useState(1);
+  const [isColorTheme, setIsColorTheme] = useState(true);
+  const [isMonoTheme, setIsMonoTheme] = useState(false);
 
   function handlerSelectOperation(e) {
     setSelectMode(e.target.value);
@@ -49,6 +51,19 @@ function App() {
     return e;
   }
 
+  function handleThemeChange(e) {
+    switch (e.target.getAttribute("value")) {
+      case "mono":
+        setIsMonoTheme(true);
+        setIsColorTheme(false);
+        break;
+      case "color":
+        setIsMonoTheme(false);
+        setIsColorTheme(true);
+        break;
+    }
+  }
+
   return (
     <>
       {/* <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} /> */}
@@ -57,14 +72,23 @@ function App() {
         <Menu
           onStartClick={handleStartClick}
           onNewVolumeChange={handleVolumeChange}
+          onThemeChange={handleThemeChange}
         />
       )}
       {shouldLevelsShown && <Levels onSelectLevel={handlerSelectLevel} />}
       {shouldComponentShown && (
         <section className="select-mode-container">
-          <SelectOperation onSelectOperation={handlerSelectOperation} />
+          <SelectOperation
+            onSelectOperation={handlerSelectOperation}
+            isMonoTheme={isMonoTheme}
+            isColorTheme={isColorTheme}
+          />
           {selectMode && (
-            <SelectMode onSelectDifficulty={handlerSelectDifficulty} />
+            <SelectMode
+              onSelectDifficulty={handlerSelectDifficulty}
+              isMonoTheme={isMonoTheme}
+              isColorTheme={isColorTheme}
+            />
           )}
         </section>
       )}
@@ -73,6 +97,8 @@ function App() {
           operation={selectMode}
           difficulty={selectDifficulty}
           levelValue={levelValue}
+          isMonoTheme={isMonoTheme}
+          isColorTheme={isColorTheme}
         />
       )}
     </>

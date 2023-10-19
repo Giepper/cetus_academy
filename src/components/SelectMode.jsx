@@ -1,3 +1,5 @@
+import "./Button.css";
+
 export function SelectMode(props) {
   const handlerSelectDifficulty = (e) => {
     props.onSelectDifficulty(e);
@@ -8,28 +10,36 @@ export function SelectMode(props) {
 
       <div className="select-operation select-mode-el">
         <button
-          className="select-difficulty-btn easy-btn"
+          className={`select-difficulty-btn ${
+            props.isColorTheme ? "easy-btn" : ""
+          }${props.isMonoTheme ? "mono-btn" : ""}`}
           value={0}
           onClick={handlerSelectDifficulty}
         >
           Easy
         </button>
         <button
-          className="select-difficulty-btn medium-btn"
+          className={`select-difficulty-btn ${
+            props.isColorTheme ? "medium-btn" : ""
+          }${props.isMonoTheme ? "mono-btn" : ""}`}
           value={1}
           onClick={handlerSelectDifficulty}
         >
           Medium
         </button>
         <button
-          className="select-difficulty-btn hard-btn"
+          className={`select-difficulty-btn ${
+            props.isColorTheme ? "hard-btn" : ""
+          }${props.isMonoTheme ? "mono-btn" : ""}`}
           value={2}
           onClick={handlerSelectDifficulty}
         >
           Hard
         </button>
         <button
-          className="select-difficulty-btn extreme-btn"
+          className={`select-difficulty-btn ${
+            props.isColorTheme ? "extreme-btn" : ""
+          }${props.isMonoTheme ? "mono-btn" : ""}`}
           value={3}
           onClick={handlerSelectDifficulty}
         >

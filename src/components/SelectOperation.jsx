@@ -8,28 +8,36 @@ export function SelectOperation(props) {
         <h2>Select Game mode</h2>
         <div className="btn-container">
           <button
-            className="select-operation-btn addition-btn"
+            className={`select-operation-btn ${
+              props.isColorTheme ? "addition-btn" : ""
+            }${props.isMonoTheme ? "mono-btn" : ""}`}
             value={0}
             onClick={handlerSelectOperation}
           >
             +
           </button>
           <button
-            className="select-operation-btn substraction-btn"
+            className={`select-operation-btn ${
+              props.isColorTheme ? "substraction-btn" : ""
+            }${props.isMonoTheme ? "mono-btn" : ""}`}
             value={1}
             onClick={handlerSelectOperation}
           >
             -
           </button>
           <button
-            className="select-operation-btn multiplication-btn"
+            className={`select-operation-btn ${
+              props.isColorTheme ? "multiplication-btn" : ""
+            }${props.isMonoTheme ? "mono-btn" : ""}`}
             value={2}
             onClick={handlerSelectOperation}
           >
             ×
           </button>
           <button
-            className="select-operation-btn power-btn"
+            className={`select-operation-btn ${
+              props.isColorTheme ? "power-btn" : ""
+            }${props.isMonoTheme ? "mono-btn" : ""}`}
             value={3}
             onClick={handlerSelectOperation}
           >

@@ -38,12 +38,6 @@ input[type="number"] {
   font-size: 48px;
 }
 
-button[type="submit"] {
-  background-color: #00ee66;
-  border-color: #008822;
-  color: #004400;
-}
-
 .points-bar-container {
   width: 70vw;
   max-width: inherit;
