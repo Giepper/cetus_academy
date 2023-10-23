@@ -1,14 +1,28 @@
+import { useState } from "react";
 import "./Levels.css";
 
 export function Levels(props) {
+  const [maxLevel, setMaxLevel] = useState(localStorage.getItem("maxLevel"));
+  console.log("bMaxLevel", maxLevel);
   let previousLevel = 0;
+  let newLevel = 0;
+  const isWon = localStorage.getItem("isWon");
   const isWin = localStorage.getItem("isWin");
-  const newLevel = localStorage.getItem("possiblyNewLevel");
-  if (localStorage.getItem("actualLevel")) {
-    previousLevel = localStorage.getItem("actualLevel");
-  } else {
-    localStorage.setItem("actualLevel", 0);
+  console.log("type of isWin", typeof isWin);
+  if (isWon === "true") {
+    newLevel = localStorage.getItem("possiblyNewLevel");
+    if (localStorage.getItem("actualLevel")) {
+      previousLevel = localStorage.getItem("actualLevel");
+    } else {
+      localStorage.setItem("actualLevel", 0);
+    }
+    if (newLevel > maxLevel) {
+      setMaxLevel(newLevel);
+    }
+    console.log("maxLevel", maxLevel);
+    localStorage.setItem("maxLevel", maxLevel);
   }
+
   function checkLevel() {
     console.log("playerWin", isWin);
     console.log("acutalLevel", previousLevel);
@@ -39,8 +53,8 @@ export function Levels(props) {
               <div
                 key={index}
                 className={`level lvl-${index + 1} ${
-                  index <= newLevel ? "level-unlocked" : ""
-                } ${index <= previousLevel ? "level-passed" : ""}`}
+                  index <= maxLevel ? "level-unlocked" : ""
+                } ${index <= maxLevel - 1 ? "level-passed" : ""}`}
                 value={index}
                 onClick={handlerSelectLevel}
               >

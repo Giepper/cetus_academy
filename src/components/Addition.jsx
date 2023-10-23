@@ -174,6 +174,7 @@ export function Addition({
   {
     didPlayerWin && localStorage.setItem("actualLevel", lv);
   }
+  localStorage.setItem("isWon", didPlayerWin);
 
   return (
     <>
