@@ -1,4 +1,6 @@
 import { useState } from "react";
+import styled from "styled-components";
+import happyTom from "../assets/happy-tom2.svg";
 import "./Levels.css";
 
 export function Levels(props) {
@@ -43,13 +45,20 @@ export function Levels(props) {
   };
   const divs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
+  const StyledCatImg = styled.img`
+    width: 50px;
+    height: 50px;
+  `;
+
   return (
     <>
       <div className="levels-wrapper">
         {divs.map((divContent, index) => (
           <>
             <div className="level-container">
-              <div className="cat-box"></div>
+              <div className="cat-box">
+                {index == maxLevel && <StyledCatImg src={happyTom} />}
+              </div>
               <div
                 key={index}
                 className={`level lvl-${index + 1} ${
