@@ -3,110 +3,103 @@ import "./App.css";
 // import { useState } from "react";
 import { useState } from "react";
 import { Addition } from "./components/Addition";
-// import { SelectMode } from "./components/SelectMode";
+import { SelectMode } from "./components/SelectMode";
+import { Menu } from "./components/Menu";
+import { SelectOperation } from "./components/SelectOperation";
+
+// import { SoundComponent } from "./components/SoundComponent";
+import { Levels } from "./components/Levels";
+// import { Volume } from "./components/Volume";
+localStorage.setItem("isWin", false);
 
 function App() {
-  console.log("render");
   const [selectMode, setSelectMode] = useState(null);
   const [selectDifficulty, setSelectDifficulty] = useState(null);
-  const [shouldComponentShown, setShouldComponentShown] = useState(true);
+  const [shouldComponentShown, setShouldComponentShown] = useState(false);
+  const [shouldMenuShown, setShouldMenuShown] = useState(true);
+  const [shouldLevelsShown, setShouldLevelsShown] = useState(false);
+  const [volume, setVolume] = useState(33);
+  const [levelValue, setLevelValue] = useState(1);
+  const [isColorTheme, setIsColorTheme] = useState(true);
+  const [isMonoTheme, setIsMonoTheme] = useState(false);
 
   function handlerSelectOperation(e) {
     setSelectMode(e.target.value);
   }
+
   function handlerSelectDifficulty(e) {
     const newDifficulty = e.target.value;
     setSelectDifficulty(newDifficulty);
-    console.log("sd", newDifficulty);
     setShouldComponentShown(false);
   }
+
+  const handleStartClick = () => {
+    setShouldLevelsShown(true);
+    setShouldMenuShown(false);
+  };
+
+  function handleVolumeChange(e) {
+    const newVolume = e.target.value;
+    setVolume(newVolume);
+    console.log(volume);
+  }
+
+  function handlerSelectLevel(e) {
+    setShouldComponentShown(true);
+    setShouldLevelsShown(false);
+    setLevelValue(e);
+    return e;
+  }
+
+  function handleThemeChange(e) {
+    switch (e.target.getAttribute("value")) {
+      case "mono":
+        setIsMonoTheme(true);
+        setIsColorTheme(false);
+        break;
+      case "color":
+        setIsMonoTheme(false);
+        setIsColorTheme(true);
+        break;
+    }
+  }
+
   return (
     <>
+      {/* <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} /> */}
+      {/* <Volume volume={volume} onVolumeChange={handleVolumeChange} /> */}
+      {shouldMenuShown && (
+        <Menu
+          onStartClick={handleStartClick}
+          onNewVolumeChange={handleVolumeChange}
+          onThemeChange={handleThemeChange}
+        />
+      )}
+      {shouldLevelsShown && <Levels onSelectLevel={handlerSelectLevel} />}
       {shouldComponentShown && (
         <section className="select-mode-container">
-          <div className="select-operation select-mode-el">
-            <h2>Select Game mode</h2>
-            <div className="btn-container">
-              <button
-                className="select-operation-btn addition-btn"
-                value={0}
-                onClick={handlerSelectOperation}
-              >
-                +
-              </button>
-              <button
-                className="select-operation-btn substraction-btn"
-                value={1}
-                onClick={handlerSelectOperation}
-              >
-                -
-              </button>
-              <button
-                className="select-operation-btn multiplication-btn"
-                value={2}
-                onClick={handlerSelectOperation}
-              >
-                ×
-              </button>
-              <button
-                className="select-operation-btn power-btn"
-                value={3}
-                onClick={handlerSelectOperation}
-              >
-                ^
-              </button>
-              {/* <button className="select-operation-btn division-btn">/</button> */}
-            </div>
-            {/* <div className="btn-container">
-            <button
-              className="select-operation-btn random-operation-btn"
-              value={3}
-              onClick={handlerSelectOperation}
-            >
-              random
-            </button>
-          </div> */}
-          </div>
+          <SelectOperation
+            onSelectOperation={handlerSelectOperation}
+            isMonoTheme={isMonoTheme}
+            isColorTheme={isColorTheme}
+          />
           {selectMode && (
-            <>
-              <h2>Select difficulty</h2>
-
-              <div className="select-operation select-mode-el">
-                <button
-                  className="select-difficulty-btn easy-btn"
-                  value={0}
-                  onClick={handlerSelectDifficulty}
-                >
-                  Easy
-                </button>
-                <button
-                  className="select-difficulty-btn medium-btn"
-                  value={1}
-                  onClick={handlerSelectDifficulty}
-                >
-                  Medium
-                </button>
-                <button
-                  className="select-difficulty-btn hard-btn"
-                  value={2}
-                  onClick={handlerSelectDifficulty}
-                >
-                  Hard
-                </button>
-                <button
-                  className="select-difficulty-btn extreme-btn"
-                  value={3}
-                  onClick={handlerSelectDifficulty}
-                >
-                  Extreme
-                </button>
-              </div>
-            </>
+            <SelectMode
+              onSelectDifficulty={handlerSelectDifficulty}
+              isMonoTheme={isMonoTheme}
+              isColorTheme={isColorTheme}
+            />
           )}
         </section>
       )}
       {selectDifficulty && (
-        <Addition operation={selectMode} difficulty={selectDifficulty} />
+        <Addition
+          operation={selectMode}
+          difficulty={selectDifficulty}
+          levelValue={levelValue}
+          isMonoTheme={isMonoTheme}
+          isColorTheme={isColorTheme}
+        />
       )}
     </>
   );

@@ -1,0 +1,6 @@
+.volume-control {
+    width: 90vw;
+  }
+  input[type="range"] {
+    width: 100%;
+  }

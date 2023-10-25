@@ -1,3 +1,7 @@
+main {
+  width: 100%;
+  height: 100%;
+}
 input[type="number"] {
   font-size: 24px;
   color: white;
@@ -18,7 +22,7 @@ input[type="number"] {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   position: relative;
 }
 input::-webkit-outer-spin-button,
@@ -26,7 +30,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -34,21 +38,15 @@ input[type=number] {
   font-size: 48px;
 }
 
-button[type="submit"] {
-  background-color: #00ee66;
-  border-color: #008822;
-  color: #004400;
-}
-
 .points-bar-container {
-  width: 60vw;
+  width: 70vw;
   max-width: inherit;
   height: 40px;
   background-color: black;
   border-radius: 20px;
   overflow: hidden;
   filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.5));
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
@@ -68,7 +66,7 @@ span.points {
   justify-content: center;
   align-items: center;
   /* padding-right: 1rem; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .liveHeart {
@@ -101,3 +99,12 @@ span.points {
   display: flex;
   align-items: center;
 }
+
+h2 {
+  font-size: 2rem;
+}
+/* button {
+  background-color: #23094b;
+  border-color: #fff;
+  color: #fff;
+} */
