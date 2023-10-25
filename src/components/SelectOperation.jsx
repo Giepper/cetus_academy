@@ -43,6 +43,15 @@ export function SelectOperation(props) {
           >
             /
           </button>
+          <button
+            className={`select-operation-btn ${
+              props.isColorTheme ? "power-btn" : ""
+            }${props.isMonoTheme ? "mono-btn" : ""}`}
+            value={4}
+            onClick={handlerSelectOperation}
+          >
+            ^
+          </button>
           {/* <button className="select-operation-btn division-btn">/</button> */}
         </div>
         {/* <div className="btn-container">

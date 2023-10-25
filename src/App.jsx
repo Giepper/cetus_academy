@@ -7,7 +7,7 @@ import { SelectMode } from "./components/SelectMode";
 import { Menu } from "./components/Menu";
 import { SelectOperation } from "./components/SelectOperation";
 
-// import { SoundComponent } from "./components/SoundComponent";
+import { SoundComponent } from "./components/SoundComponent";
 import { Levels } from "./components/Levels";
 // import { Volume } from "./components/Volume";
 localStorage.setItem("isWin", false);
@@ -66,7 +66,7 @@ function App() {
 
   return (
     <>
-      {/* <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} /> */}
+      <SoundComponent volume={volume} onVolumeChange={handleVolumeChange} />
       {/* <Volume volume={volume} onVolumeChange={handleVolumeChange} /> */}
       {shouldMenuShown && (
         <Menu

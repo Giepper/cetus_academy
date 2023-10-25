@@ -117,6 +117,10 @@ export function Addition({
       answer = num1 / num2;
       operator = `/`;
       break;
+    case "4":
+      answer = Math.pow(num1, num2);
+      operator = "^";
+      break;
   }
 
   const [drawnNumbers, setDrawnNumbers] = useState(false);

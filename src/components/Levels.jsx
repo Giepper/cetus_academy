@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import happyTom from "../assets/happy-tom2.svg";
+import trophy from "../assets/trophy.svg";
 import "./Levels.css";
 
 export function Levels(props) {
@@ -67,7 +68,7 @@ export function Levels(props) {
                 value={index}
                 onClick={handlerSelectLevel}
               >
-                {divContent}
+                {index <= maxLevel - 1 ? <img src={trophy} /> : divContent}
               </div>
             </div>
           </>

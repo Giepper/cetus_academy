@@ -39,7 +39,13 @@
 }
 
 .level-passed {
-  background-color: #00ee66;
-  border-color: #008822;
-  color: #004400;
+  background-color: gold;
+  border-color: darkgoldenrod;
+  color: rgb(127, 94, 13);
 }
+
+/* .level-gold {
+  background-color: gold;
+  border-color: darkgoldenrod;
+  color: rgb(127, 94, 13);
+} */
