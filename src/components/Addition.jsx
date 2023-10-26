@@ -26,6 +26,13 @@ let answer;
 let randNum = 0;
 let lvlNum = 0;
 
+let achievementGetterE = 0;
+let achievementGetterM = 0;
+let achievementGetterH = 0;
+let achievementGetterEx = 0;
+
+
+
 function drawNumbers(rand) {
   num1 = Math.floor(Math.random() * rand);
   num2 = Math.floor(Math.random() * rand);
@@ -79,6 +86,30 @@ export function Addition({
     if (answer == inputAnswer) {
       setNumberOfPoints(numberOfPoints + 1);
       setCheckAnswer(true);
+      switch(difficulty)
+      {
+        case "0":
+          achievementGetterE++
+          console.log("negro" + achievementGetterE)
+          localStorage.setItem("completedE", achievementGetterE);
+        break;
+        case "1":
+          achievementGetterM++
+          localStorage.setItem("completedM", achievementGetterM);
+        break;
+        case "2":
+          achievementGetterH++
+          localStorage.setItem("completedH", achievementGetteH);
+        break;
+        case "3":
+          achievementGetterEx++
+          localStorage.setItem("completedEx", achievementGetterEx);
+        break;
+      }
+
+
+
+
       if (operator != "/") {
         drawNumbers(randNum);
       } else {
@@ -131,27 +162,72 @@ export function Addition({
         randNum = data.levels[levelValue].multiplier[0];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
-
         setDrawnNumbers(true);
+
+        ///
+        if(localStorage.getItem("completedE"))
+        {
+          achievementGetterE = localStorage.getItem("completedE")
+        }
+        else
+        {
+          localStorage.setItem("completedE", 0);
+        }
+        
         break;
       case "1":
         randNum = data.levels[levelValue].multiplier[1];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
-
         setDrawnNumbers(true);
+        
+        ///
+        if(localStorage.getItem("completedM"))
+        {
+          achievementGetterM = localStorage.getItem("completedM")
+        }
+        else
+        {
+          localStorage.setItem("completedM", 0);
+        }
+
+
         break;
       case "2":
         randNum = data.levels[levelValue].multiplier[2];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
         setDrawnNumbers(true);
+                
+        ///
+        if(localStorage.getItem("completedH"))
+        {
+          achievementGetterH = localStorage.getItem("completedH")
+        }
+        else
+        {
+          localStorage.setItem("completedH", 0);
+        }
+
+
         break;
       case "3":
         randNum = data.levels[levelValue].multiplier[3];
         drawNumbers(randNum);
         drawDivisionNumbers(randNum);
         setDrawnNumbers(true);
+       
+        ///
+        if(localStorage.getItem("completedEx"))
+        {
+          achievementGetterEx = localStorage.getItem("completedEx")
+        }
+        else
+        {
+          localStorage.setItem("completedEx", 0);
+        }
+
+
         break;
       default:
     }

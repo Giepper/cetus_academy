@@ -45,11 +45,47 @@
     },
 
     {
-      "name": "Invincible",
-      "description": "Win a game without losing a life",
-      "winCondition": "lifeCount",
-      "gameMode": "",
+      "name": "WIN A HARD GAME",
+      "description": "Complete a game in medium gamemode",
+      "winCondition": "gameCount",
+      "gameMode": "hard",
       "goal": 1
+    },
+    {
+      "name": "10 HARD GAMES!",
+      "description": "Complete 10 games in medium gamemode",
+      "winCondition": "gameCount",
+      "gameMode": "hard",
+      "goal": 10
+    },
+    {
+      "name": "50 HARD GAMES",
+      "description": "Complete 50 games in medium gamemode",
+      "winCondition": "gameCount",
+      "gameMode": "hard",
+      "goal": 50
+    },
+
+    {
+      "name": "WIN AN EXTREME GAME",
+      "description": "Complete a game in medium gamemode",
+      "winCondition": "gameCount",
+      "gameMode": "extreme",
+      "goal": 1
+    },
+    {
+      "name": "10 EXTREME GAMES!",
+      "description": "Complete 10 games in medium gamemode",
+      "winCondition": "gameCount",
+      "gameMode": "extreme",
+      "goal": 10
+    },
+    {
+      "name": "50 EXTREME GAMES",
+      "description": "Complete 50 games in medium gamemode",
+      "winCondition": "gameCount",
+      "gameMode": "extreme",
+      "goal": 50
     }
   ],
   "gameModes": [

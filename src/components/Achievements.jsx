@@ -15,20 +15,48 @@ export function Achievements(props) {
 
   const achievements = [];
 
+
+
   function renderAchievements() {
 
-    for(let x = 0; x < (numberOfAchievements-completedAchievements); x++)
+    
+
+
+
+    for(let x = 0; x <= (numberOfAchievements-completedAchievements); x++)
     {
+      let diff;
+      switch (data.achievements[x].gameMode)
+      {
+        case "easy":
+          diff = "completedE"
+        break;
+        case "medium":
+          diff = "completedM"
+        break;
+        case "hard":
+          diff = "completedH"
+        break;
+        case "extreme":
+          diff = "completedEx"
+        break;
+
+
+      }
+        let parsed = parseInt(localStorage.getItem(diff))
+        console.log(typeof(parsed))
+        console.log(typeof(data.achievements[x].goal))
+        
+
         achievements.push(
-        <div className='achievementContainer completed'>
+        <div className={`achievementContainer ${parsed>=data.achievements[x].goal ? "completed" : ""}`}>
         <div className='achievementHeader'>
             {data.achievements[x].name}
         </div>
         <div className="achievementDesc">
             {data.achievements[x].description}
             <br/>
-            <span className='achievementDone'>You have not completed this achievement</span>
-            <span className='achievementGoal'>0/{data.achievements[x].goal}</span>
+            <span className='achievementGoal'>{localStorage.getItem(diff)}/{data.achievements[x].goal}</span>
         </div>
         </div>
         )

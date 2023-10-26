@@ -1,6 +1,8 @@
+
+
 .achievementContainer {
-  width: 320px;
-  height: 160px;
+  width: 250px;
+  height: 150px;
 
   display: flex;
   flex-direction: column;
@@ -47,7 +49,7 @@
 .achievementHeader {
   margin: 8px 0;
   height: 20%;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .achievementDesc {
@@ -70,7 +72,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  max-width: 1100px;
+  gap: 20px;
 }
 
 .achievementDone {
@@ -79,4 +82,14 @@
   bottom: 40px;
   left: 0;
   width: 100%;
+}
+
+.completed
+{
+  background-color: #00AA44;
+}
+
+.modal
+{
+  position: relative;
 }

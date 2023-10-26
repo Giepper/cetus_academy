@@ -23,6 +23,25 @@ function App() {
   const [isColorTheme, setIsColorTheme] = useState(true);
   const [isMonoTheme, setIsMonoTheme] = useState(false);
 
+  if(!localStorage.getItem("completedE"))
+  {
+    localStorage.setItem("completedE", 0);
+  }
+  if(!localStorage.getItem("completedM"))
+  {
+    localStorage.setItem("completedM", 0);
+  }
+  if(!localStorage.getItem("completedH"))
+  {
+    localStorage.setItem("completedH", 0);
+  }
+  if(!localStorage.getItem("completedEx"))
+  {
+    localStorage.setItem("completedEx ", 0);
+  }
+
+
+
   function handlerSelectOperation(e) {
     setSelectMode(e.target.value);
   }
